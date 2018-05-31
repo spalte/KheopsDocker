@@ -92,7 +92,7 @@ services:
       - mysql_password
 
   tomcat-proxy:
-    container_name: proxy
+    container_name: tomcatproxy
     image: osirixfoundation/kheopsproxy-tomcat:${KHEOPS_PROXY_IMAGE_TAG}
     volumes:
       - /etc/localtime:/etc/localtime:ro
