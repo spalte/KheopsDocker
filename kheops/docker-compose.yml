@@ -100,7 +100,7 @@ services:
     restart: on-failure
     env_file: docker-compose.env
     ports:
-      - "8048:8049"
+      - "8049:80"
     depends_on:
       - tomcat-authorization
       - arc
