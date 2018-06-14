@@ -138,6 +138,21 @@ services:
       - tomcat-authorization
       - tomcat-proxy
       - arc
+      
+  proxy:
+    container_name: proxy
+    env_file: docker-compose.env
+    image: osirixfoundation/pacsproxyauthorization:${KHEOPS_PROXY_PACS_IMAGE_TAG}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${TIME_ZONE}:/etc/timezone:ro
+    ports:
+      - "82:80"
+    depends_on:
+      - arc
+      - nginx
+    secrets:
+      - kheops_superuser_hmasecret
 
 
 secrets:
@@ -145,7 +160,6 @@ secrets:
     file: ${SECRETS_PATH}/kheops_superuser_hmasecret
   kheops_auth_hmasecret:
     file: ${SECRETS_PATH}/kheops_auth_hmasecret
-
   mysql_root_password:
     file: ${SECRETS_PATH}/mysql_root_password
   mysql_password:
