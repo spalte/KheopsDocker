@@ -122,9 +122,9 @@ services:
       - tomcat-authorization
       - arc
 
-  nginx:
+  kheopsReverseProxy:
     image: osirixfoundation/kheopsnginx:${KHEOPS_NGINX_IMAGE_TAG}
-    container_name: kheopsnginx
+    container_name: kheopsReverseProxy
     secrets:
       - privkey1.pem
       - fullchain1.pem
@@ -136,10 +136,10 @@ services:
       - tomcat-authorization
       - tomcat-proxy
       - arc
-      - proxy
+      - kheopsAuthorizationProxy
       
-  proxy:
-    container_name: proxy
+  kheopsAuthorizationProxy:
+    container_name: kheopsAuthorizationProxy
     env_file: docker-compose.env
     image: osirixfoundation/pacsproxyauthorization:${KHEOPS_PROXY_PACS_IMAGE_TAG}
     volumes:
