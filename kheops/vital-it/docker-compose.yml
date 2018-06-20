@@ -45,7 +45,7 @@ services:
 
 
   kheops-mysql:
-    container_name: kheopsmysql
+    container_name: kheops_authorization_database
     image: osirixfoundation/kheopsauthorization-database:${KHEOPS_DATABASE_IMAGE_TAG}
     environment:
       MYSQL_ROOT_PASSWORD: /run/secrets/mysql_root_password
@@ -62,7 +62,7 @@ services:
 
 
   tomcat-authorization:
-    container_name: tomcataut
+    container_name: kheops_authorization
     image: osirixfoundation/kheopsauthorization-tomcat:${KHEOPS_TOMCAT_IMAGE_TAG}
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -78,7 +78,7 @@ services:
       - mysql_password
 
   tomcat-proxy:
-    container_name: tomcatproxy
+    container_name: kheops_dicomweb_proxy
     image: osirixfoundation/kheopsproxy-tomcat:${KHEOPS_PROXY_IMAGE_TAG}
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -90,7 +90,7 @@ services:
       - arc
 
   meteor-viewer:
-    container_name: kheopsviewer
+    container_name: kheops_viewer
     image: osirixfoundation/kheops-viewer:${KHEOPS_VIEWER_IMAGE_TAG}
     env_file: docker-compose.env
     volumes:
@@ -105,11 +105,14 @@ services:
 
   nginx:
     image: osirixfoundation/kheopsnginx:${KHEOPS_NGINX_IMAGE_TAG}
-    container_name: kheopsnginx
+    container_name: kheops_reverse_proxy
     secrets:
       - privkey1.pem
       - fullchain1.pem
     env_file: docker-compose.env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${TIME_ZONE}:/etc/timezone:ro
     ports:
       - "80:80"
       - "443:443"
@@ -120,7 +123,7 @@ services:
       - proxy
       
   proxy:
-    container_name: proxy
+    container_name: kheops_authorization_proxy
     env_file: docker-compose.env
     image: osirixfoundation/pacsproxyauthorization:${KHEOPS_PROXY_PACS_IMAGE_TAG}
     volumes:
