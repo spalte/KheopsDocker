@@ -120,8 +120,8 @@ services:
   kheops-viewer:
     container_name: kheopsviewer
     image: osirixfoundation/kheops-viewer:${KHEOPS_VIEWER_IMAGE_TAG}
-#    ports:
-#      - "3000:3000"
+    ports:
+      - "3000:3000"
     env_file: docker-compose.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -132,25 +132,6 @@ services:
     depends_on:
       - kheops-authorization
       - arc
-
-  kheops-reverse-proxy:
-    image: osirixfoundation/kheops-reverse-proxy:${KHEOPS_REVERSE_PROXY_IMAGE_TAG}
-    container_name: kheopsreverseproxy
-    secrets:
-      - privkey1.pem
-      - fullchain1.pem
-    env_file: docker-compose.env
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - kheops-authorization
-      - kheops-dicomweb-proxy
-      - arc
-      - pacs-authorization-proxy
       
   pacs-authorization-proxy:
     container_name: pacsauthorizationproxy
