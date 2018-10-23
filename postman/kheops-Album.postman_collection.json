@@ -286,7 +286,6 @@
 							"listen": "test",
 							"script": {
 								"id": "c09cfdaa-aa57-499c-a23c-8e26fa376e1e",
-								"type": "text/javascript",
 								"exec": [
 									"tests[\"Status code is 201\"] = responseCode.code === 201;",
 									"",
@@ -325,28 +324,19 @@
 									"tests[\"notification_new_series\"] = jsonObject.notification_new_series == true",
 									"",
 									"tests[\"notification_new_comment\"] = jsonObject.notification_new_comment == true",
-									"",
-									"",
-									"function wait(ms)",
-									"{",
-									"    var d = new Date();",
-									"    var d2 = null;",
-									"    do { d2 = new Date(); }",
-									"    while(d2-d < ms);",
-									"}",
-									"",
-									"wait(3000);"
-								]
+									""
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "9779808a-2ba5-42f3-a7a1-2d91cb976010",
-								"type": "text/javascript",
 								"exec": [
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -503,7 +493,6 @@
 							"listen": "test",
 							"script": {
 								"id": "18907c18-71fe-49e7-9bb9-78e8070e402a",
-								"type": "text/javascript",
 								"exec": [
 									"tests[\"Status code is 201\"] = responseCode.code === 201;",
 									"",
@@ -540,27 +529,19 @@
 									"tests[\"notification_new_series\"] = jsonObject.notification_new_series == true",
 									"",
 									"tests[\"notification_new_comment\"] = jsonObject.notification_new_comment == true",
-									"",
-									"function wait(ms)",
-									"{",
-									"    var d = new Date();",
-									"    var d2 = null;",
-									"    do { d2 = new Date(); }",
-									"    while(d2-d < ms);",
-									"}",
-									"",
-									"wait(3000);"
-								]
+									""
+								],
+								"type": "text/javascript"
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
 								"id": "9622a218-2116-4991-9b69-e3643e174be3",
-								"type": "text/javascript",
 								"exec": [
 									""
-								]
+								],
+								"type": "text/javascript"
 							}
 						}
 					],
