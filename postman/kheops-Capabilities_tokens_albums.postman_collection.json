@@ -430,7 +430,7 @@
 								"id": "31a1a60d-9293-4452-8e38-5f54a7c164db",
 								"exec": [
 									"// ensure healthy response code",
-									"tests[\"Status code is 401\"] = responseCode.code === 401;"
+									"tests[\"Status code is 403\"] = responseCode.code === 403;"
 								],
 								"type": "text/javascript"
 							}
@@ -648,7 +648,7 @@
 					"response": []
 				},
 				{
-					"name": "STOW RS inside inbox capability token Copy",
+					"name": "STOW RS inside album capability token",
 					"event": [
 						{
 							"listen": "test",
@@ -656,7 +656,7 @@
 								"id": "7524252c-94ee-4cd1-8780-15785472765a",
 								"exec": [
 									"// ensure healthy response code",
-									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+									"tests[\"Status code is 409\"] = responseCode.code === 409;"
 								],
 								"type": "text/javascript"
 							}
@@ -808,7 +808,7 @@
 					"response": []
 				},
 				{
-					"name": "STOW RS inside inbox capability token",
+					"name": "STOW RS inside album capability token",
 					"event": [
 						{
 							"listen": "test",
