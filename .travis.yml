@@ -29,7 +29,6 @@ before_script:
   - chmod +x script_run_docker.sh
   - ./script.sh
 
-
 script:
   - ./script_run_docker.sh
   - node_modules/.bin/newman run postman/kheops-Capabilities_tokens_albums.postman_collection.json -e postman/kheops_localhost.postman_environment.json -g postman/Workspace.postman_globals.json
