@@ -679,18 +679,12 @@
 							"file": {}
 						},
 						"url": {
-							"raw": "{{URL}}/studies?album={{album_id_1}}",
+							"raw": "{{URL}}/studies",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"studies"
-							],
-							"query": [
-								{
-									"key": "album",
-									"value": "{{album_id_1}}"
-								}
 							]
 						}
 					},
@@ -839,18 +833,12 @@
 							"file": {}
 						},
 						"url": {
-							"raw": "{{URL}}/studies?album={{album_id_1}}",
+							"raw": "{{URL}}/studies",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"studies"
-							],
-							"query": [
-								{
-									"key": "album",
-									"value": "{{album_id_1}}"
-								}
 							]
 						}
 					},
