@@ -200,7 +200,6 @@
 					"listen": "test",
 					"script": {
 						"id": "1f93fefa-54d3-401d-a81d-60eb67e082d2",
-						"type": "text/javascript",
 						"exec": [
 							"// ensure healthy response code",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -214,7 +213,8 @@
 							"",
 							"tests[\"Secrect is correct\"] = jsonObject[0].secret === pm.environment.get(\"secret_capability_token\");",
 							"tests[\"Description is correct\"] = jsonObject[0].description === pm.environment.get(\"title\");"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -237,6 +237,86 @@
 					],
 					"path": [
 						"capabilities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get capability token info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f93fefa-54d3-401d-a81d-60eb67e082d2",
+						"exec": [
+							"// ensure healthy response code",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"[INFO] Response: \" + responseBody] = true;",
+							"",
+							"var jsonObject = JSON.parse(responseBody);",
+							"",
+							"tests[\"revoked = false\"] = jsonObject.revoked === false;",
+							"",
+							"tests[\"scope_type = user\"] = jsonObject.scope_type === \"user\";",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/capabilities/{{secret_capability_token}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"capabilities",
+						"{{secret_capability_token}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get capability token info-Bad token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f93fefa-54d3-401d-a81d-60eb67e082d2",
+						"exec": [
+							"// ensure healthy response code",
+							"tests[\"Status code is 404\"] = responseCode.code === 404;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/capabilities/12345678901234567890zZ",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"capabilities",
+						"12345678901234567890zZ"
 					]
 				}
 			},
@@ -290,24 +370,23 @@
 					"listen": "test",
 					"script": {
 						"id": "daf5d9e4-7e4e-4e28-88d6-26777670517b",
-						"type": "text/javascript",
 						"exec": [
 							"// ensure healthy response code",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;",
 							"",
 							"tests[\"[INFO] Response: \" + responseBody] = true;",
 							"",
-							"tests[\"Not empty response []\"] = responseBody != \"[]\"",
+							"tests[\"Not empty response []\"] = responseBody != \"\"",
 							"",
 							"pm.environment.set(\"tempDicomData\", responseBody);"
-						]
+						],
+						"type": "text/javascript"
 					}
 				},
 				{
 					"listen": "prerequest",
 					"script": {
 						"id": "f20f2c04-9f39-4f84-8a01-0d8770a7ecc4",
-						"type": "text/javascript",
 						"exec": [
 							"function wait(ms)",
 							"{",
@@ -318,7 +397,8 @@
 							"}",
 							"",
 							"wait(15000);"
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
