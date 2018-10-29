@@ -825,7 +825,7 @@
 			]
 		},
 		{
-			"name": "Delete",
+			"name": "Delete /study/.../series/...",
 			"item": [
 				{
 					"name": "Delete studies from album-write",
@@ -835,7 +835,7 @@
 							"script": {
 								"id": "38ad1edc-20bd-4940-89fa-953608b93017",
 								"exec": [
-									"tests[\"Status code is 400\"] = responseCode.code === 400;"
+									"tests[\"Status code is 403\"] = responseCode.code === 403;"
 								],
 								"type": "text/javascript"
 							}
@@ -910,6 +910,59 @@
 					"response": []
 				},
 				{
+					"name": "album get studies list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "128dde23-feee-4f1e-a16a-0f5249f5a7ec",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Not empty response []\"] = responseBody != \"[]\"",
+									"",
+									"var jsonObject = JSON.parse(responseBody);",
+									"",
+									"tests[\"Return 1 study\"] = jsonObject.length === 1;",
+									"",
+									"tests[\"[INFO] Response: \" + responseBody] = true;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "433061e1-5fc1-4ead-8d1d-c7aa6cd7c5f4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{secret_capability_token_read}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/studies",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"studies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete studies from album-read-write",
 					"event": [
 						{
@@ -917,7 +970,7 @@
 							"script": {
 								"id": "38ad1edc-20bd-4940-89fa-953608b93017",
 								"exec": [
-									"tests[\"Status code is 400\"] = responseCode.code === 400;"
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
 								],
 								"type": "text/javascript"
 							}
@@ -1002,7 +1055,135 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "STOW RS",
+			"item": [
+				{
+					"name": "STOW RS inside album capability token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7524252c-94ee-4cd1-8780-15785472765a",
+								"exec": [
+									"// ensure healthy response code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{secret_capability_token_write}}"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{URL}}/studies",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"studies"
+							]
+						}
+					},
+					"response": []
 				},
+				{
+					"name": "album get studies list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "128dde23-feee-4f1e-a16a-0f5249f5a7ec",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Not empty response []\"] = responseBody != \"[]\"",
+									"",
+									"var jsonObject = JSON.parse(responseBody);",
+									"",
+									"tests[\"Return 1 study\"] = jsonObject.length === 1;",
+									"",
+									"tests[\"[INFO] Response: \" + responseBody] = true;"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "433061e1-5fc1-4ead-8d1d-c7aa6cd7c5f4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{secret_capability_token_read}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{URL}}/studies",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"studies"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a43051f9-5172-41f2-86b4-bd1301536045",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba58fb6a-5f4d-4a7b-bc3e-4a28e06412bf",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Delete /study/.../series/.../album/...",
+			"item": [
 				{
 					"name": "Delete studies from album-write",
 					"event": [
@@ -1230,6 +1411,28 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "738f0312-757c-4c51-a9fb-b71ebbe25942",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8fcacf5-f15b-4baa-bf44-d06d2e4f7511",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
