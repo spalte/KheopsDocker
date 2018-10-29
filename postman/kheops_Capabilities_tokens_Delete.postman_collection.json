@@ -406,7 +406,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access_token_user2}}"
+								"value": "Bearer {{access_token_user1}}"
 							},
 							{
 								"key": "Accept",
@@ -510,7 +510,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access_token_user2}}"
+								"value": "Bearer {{access_token_user1}}"
 							},
 							{
 								"key": "Accept",
@@ -614,7 +614,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access_token_user2}}"
+								"value": "Bearer {{access_token_user1}}"
 							},
 							{
 								"key": "Accept",
