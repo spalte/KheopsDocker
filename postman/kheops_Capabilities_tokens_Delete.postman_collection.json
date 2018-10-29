@@ -835,7 +835,7 @@
 							"script": {
 								"id": "38ad1edc-20bd-4940-89fa-953608b93017",
 								"exec": [
-									"tests[\"Status code is 403\"] = responseCode.code === 403;"
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
 								],
 								"type": "text/javascript"
 							}
@@ -917,7 +917,7 @@
 							"script": {
 								"id": "38ad1edc-20bd-4940-89fa-953608b93017",
 								"exec": [
-									"tests[\"Status code is 403\"] = responseCode.code === 403;"
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
 								],
 								"type": "text/javascript"
 							}
@@ -1150,7 +1150,7 @@
 							"script": {
 								"id": "38ad1edc-20bd-4940-89fa-953608b93017",
 								"exec": [
-									"tests[\"Status code is 403\"] = responseCode.code === 403;"
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
 								],
 								"type": "text/javascript"
 							}
