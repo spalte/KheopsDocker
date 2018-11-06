@@ -119,6 +119,8 @@ services:
       - "443:443"
       - "8042:8042"
       - "8048:8048"
+    extra_hosts:
+      - "test2.kheops.online:127.0.0.1"
     depends_on:
       - kheops-authorization
       - kheops-dicomweb-proxy
