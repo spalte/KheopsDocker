@@ -1,9 +1,7 @@
-Branche réservée pour le développement de l'interface utilisateur web.
+Branche réservée pour le développement interne.
 
-Toujours utiliser des images Docker qui fonctionnent. (tag:vital-it-dev-ui)
+Aucune restriction
 
-Fonctionne sur https://test.kheops.online
+Fonctionne sur https://test2.kheops.online
 
-Est considéré comme un environnement de production.
-
-Ne contient pas forcément la dernière version du code.
+Est considéré comme un environnement de test.
