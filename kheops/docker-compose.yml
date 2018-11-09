@@ -7,8 +7,8 @@ services:
     image: dcm4che/slapd-dcm4chee:2.4.44-13.0
     env_file: ${ENV_VARIABLES_PATH}/pacs-variables.env
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
       - dcm4chee-ldap-ldap:/var/lib/ldap
       - dcm4chee-ldap-slapdd:/etc/ldap/slapd.d
     restart: on-failure
@@ -46,18 +46,18 @@ services:
       - ldap
       - db
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
       - dcm4chee-arc-wildfly:/opt/wildfly/standalone
-      - /dcm4chee-arc/storage:/storage
+      - dcm4chee-arc-wildfly:/storage
     restart: on-failure
 
   kheops-authorization:
     container_name: kheopsauthorization
     image: osirixfoundation/kheops-authorization:${KHEOPS_AUTHORIZATION_IMAGE_TAG}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
     restart: on-failure
     env_file:
       - ${ENV_VARIABLES_PATH}/url-variables.env
@@ -73,9 +73,9 @@ services:
   kheops-zipper:
     container_name: kheopszipper
     image: osirixfoundation/kheops-zipper:${KHEOPS_ZIPPER_IMAGE_TAG}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
     restart: on-failure
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
     depends_on:
@@ -84,9 +84,9 @@ services:
   kheops-dicomweb-proxy:
     container_name: kheopsdicomwebproxy
     image: osirixfoundation/kheops-dicomweb-proxy:${KHEOPS_DICOMWEB_PROXY_IMAGE_TAG}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
     restart: on-failure
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
     ports:
@@ -102,9 +102,9 @@ services:
       - "3000:3000"
 
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
     restart: on-failure
     secrets:
       - OAuth2_secret
@@ -121,9 +121,9 @@ services:
     env_file:
       - ${ENV_VARIABLES_PATH}/nginx-variables.env
       - ${ENV_VARIABLES_PATH}/url-variables.env
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
     ports:
       - "80:80"
       - "443:443"
@@ -139,9 +139,9 @@ services:
     container_name: pacsauthorizationproxy
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
     image: osirixfoundation/pacs-authorization-proxy:${PACS_AUTHORIZATION_PROXY_IMAGE_TAG}
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${TIME_ZONE}:/etc/timezone:ro
     ports:
       - "82:80"
     depends_on:
@@ -177,4 +177,5 @@ volumes:
   dcm4chee-ldap-slapdd:
   dcm4chee-db-data:
   dcm4chee-arc-wildfly:
+  Dcm4chee-arc-storage:
   kheops-db-data:
