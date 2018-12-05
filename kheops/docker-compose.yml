@@ -116,6 +116,8 @@ services:
     depends_on:
       - kheops-authorization
       - arc
+    secrets:
+      - kheops_auth_hmasecret_post
 
   kheops-viewer:
     container_name: kheopsviewer
