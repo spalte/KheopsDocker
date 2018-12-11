@@ -23,6 +23,8 @@ services:
       - authdb_pass
       - keycloakdb_pass
       - pacsdb_pass
+    ports:
+      - "5432:5432"
     restart: on-failure
 
   arc:
@@ -102,8 +104,8 @@ services:
   kheops-viewer:
     container_name: kheopsviewer
     image: osirixfoundation/kheops-viewer:${KHEOPS_VIEWER_IMAGE_TAG}
-    ports:
-      - "3000:3000"
+#    ports:
+#      - "3000:3000"
 
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
 #    volumes:
@@ -115,6 +117,12 @@ services:
     depends_on:
       - kheops-authorization
       - arc
+
+  kheops-ohif-standalone:
+    container_name: kheopsohifstandalone
+    image: osirixfoundation/kheops-ohif-standalone:latest
+    ports:
+      - "3000:3000"
 
   kheops-reverse-proxy:
     image: osirixfoundation/kheops-reverse-proxy:${KHEOPS_REVERSE_PROXY_IMAGE_TAG}
