@@ -112,6 +112,8 @@ services:
     secrets:
       - privkey1.pem
       - fullchain1.pem
+      - privkey2.pem
+      - fullchain2.pem
     env_file: docker-compose.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
