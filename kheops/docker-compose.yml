@@ -144,11 +144,11 @@ services:
       - kheops_auth_hmasecret
       - kheops_auth_hmasecret_post
 
-ohif-viewer:
-  image: osirixfoundation/viewer:no-tls
-  container_name: ohif-viewer
-  environment:
-    - SERVER_NAME=ohif-viewer
+  ohif-viewer:
+    image: osirixfoundation/viewer:no-tls
+    container_name: ohif-viewer
+    environment:
+      - SERVER_NAME=ohif-viewer
 
 secrets:
   kheops_superuser_hmasecret:
