@@ -57,6 +57,8 @@ services:
     depends_on:
       - db
       - arc
+    extra_hosts:
+      - "keycloak.kheops.online:10.5.5.29"
     secrets:
       - kheops_superuser_hmasecret
       - kheops_auth_hmasecret
