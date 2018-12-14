@@ -144,6 +144,12 @@ services:
       - kheops_auth_hmasecret
       - kheops_auth_hmasecret_post
 
+ohif-viewer:
+  image: osirixfoundation/viewer:no-tls
+  container_name: ohif-viewer
+  environment:
+    - SERVER_NAME=ohif-viewer
+
 secrets:
   kheops_superuser_hmasecret:
     file: ${SECRETS_PATH}/kheops_superuser_hmasecret
@@ -156,7 +162,11 @@ secrets:
   privkey1.pem:
     file: ${NGINX_KEY}/privkey1.pem
   fullchain1.pem:
-    file: ${NGINX_KEY}/fullchain1.pem
+    file: ${NGINX_KEY}/fullchain1.pem  
+  privkey2.pem:
+    file: ${NGINX_KEY}/privkey2.pem
+  fullchain2.pem:
+    file: ${NGINX_KEY}/fullchain2.pem
   OAuth2_secret:
     file: ${SECRETS_PATH}/OAuth2_secret
 
