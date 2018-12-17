@@ -144,7 +144,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
-    ports:
+    # ports:
       #- "82:80"
     depends_on:
       - arc
