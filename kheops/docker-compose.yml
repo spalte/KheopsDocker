@@ -29,12 +29,12 @@ services:
     container_name: pacsarc
     image: dcm4che/dcm4chee-arc-psql:5.13.3
     ports:
-      - "8080:8080"
-      - "8443:8443"
-      - "9990:9990"
-      - "8787:8787"
-      - "11112:11112"
-      - "2575:2575"
+      #- "8080:8080"
+      #- "8443:8443"
+      #- "9990:9990"
+      #- "8787:8787"
+      #- "11112:11112"
+      #- "2575:2575"
     env_file: ${ENV_VARIABLES_PATH}/pacs-variables.env
     environment:
       WILDFLY_CHOWN: /storage /opt/wildfly/standalone
@@ -90,7 +90,7 @@ services:
     restart: on-failure
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
     ports:
-      - "8049:8080"
+      #- "8049:8080"
     depends_on:
       - kheops-authorization
       - arc
@@ -101,7 +101,7 @@ services:
     container_name: kheopsviewer
     image: osirixfoundation/kheops-viewer:${KHEOPS_VIEWER_IMAGE_TAG}
     ports:
-      - "3000:3000"
+      #- "3000:3000"
 
     env_file: ${ENV_VARIABLES_PATH}/url-variables.env
     volumes:
@@ -129,8 +129,8 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8042:8042"
-      - "8048:8048"
+      #- "8042:8042"
+      #- "8048:8048"
     depends_on:
       - kheops-authorization
       - kheops-dicomweb-proxy
@@ -145,7 +145,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
     ports:
-      - "82:80"
+      #- "82:80"
     depends_on:
       - arc
     secrets:
