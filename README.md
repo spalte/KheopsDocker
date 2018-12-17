@@ -1,9 +1,11 @@
 # kheopsDocker
 
-Utiliser pour Travis-ci ou pour tourner en local
+Branche réservée pour le lavim.
 
-Branche de référence pour les tests 
+Toujours utiliser des images Docker qui fonctionnent. (tag:lavim)
 
-Ne pas modifier les tags des images Docker
+Fonctionne sur https://lavim.kheops.online
 
-Source des tests Postman (ne pas modifier les tests ici, le faire depuis postman UNIQUEMENT)
+Est considéré comme un environnement de production.
+
+Ne contient pas forcément la dernière version du code.
