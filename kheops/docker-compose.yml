@@ -4,7 +4,7 @@ services:
 
   ldap:
     container_name: pacsldap
-    image: dcm4che/slapd-dcm4chee:2.4.44-13.3
+    image: dcm4che/slapd-dcm4chee:2.4.44-15.0
     env_file: docker-compose.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -26,7 +26,7 @@ services:
 
   arc:
     container_name: pacsarc
-    image: dcm4che/dcm4chee-arc-psql:5.13.3
+    image: osirixfoundation/kheops-dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
     #ports:
       #- "8080:8080"
       #- "8443:8443"
