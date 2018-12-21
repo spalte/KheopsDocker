@@ -6,6 +6,8 @@ services:
     image: osirixfoundation/viewer:tls
     container_name: ohif-viewer
     env_file: docker-compose.env
+    ports:
+      - "443:443"
     secrets:
       - privkey1.pem
       - fullchain1.pem
