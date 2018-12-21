@@ -93,17 +93,15 @@ services:
 
   kheops-viewer:
     container_name: kheopsviewer
-    image: osirixfoundation/kheops-viewer:${KHEOPS_VIEWER_IMAGE_TAG}
+    image: osirixfoundation/kheops-ui:no-tls
     ports:
       - "3000:3000"
-
-    env_file: docker-compose.env
+    environment:
+      - SERVER_NAME=kheopsviewer
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
     restart: on-failure
-    secrets:
-      - OAuth2_secret
     depends_on:
       - kheops-authorization
       - arc
