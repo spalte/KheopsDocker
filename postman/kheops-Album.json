@@ -19,8 +19,7 @@
               "script": {
                 "id": "83822f04-38b7-400f-bc35-7a638a6d5e26",
                 "exec": [
-                  "//201",
-                  "tests[\"Status code is 201\"] = responseCode.code === 201;",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
                   "var jsonObject = JSON.parse(responseBody);",
                   "",
@@ -59,7 +58,7 @@
                 {
                   "key": "assertion",
                   "type": "text",
-                  "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiIxMjM0NTY3ODkiLCJlbWFpbCI6InRvdG9AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MjUyMjk0MzU3MiwiaXNzIjoiYXV0aG9yaXphdGlvbi5raGVvcHMub25saW5lIiwiaWF0IjoxNTIyOTM5OTcyfQ.916Xn1BnUwdhOvuWErWWOh_AkYXeS36mVRTP06VWsVA"
+                  "value": "{{user1_token}}"
                 }
               ]
             },
@@ -77,7 +76,7 @@
                 "id": "3366818a-20f6-439d-bb8c-8a7d4fc40b9d",
                 "exec": [
                   "// ensure healthy response code change",
-                  "tests[\"Status code is 201\"] = responseCode.code === 201;",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
                   "var jsonObject = JSON.parse(responseBody);",
                   "",
@@ -117,7 +116,7 @@
                 {
                   "key": "assertion",
                   "type": "text",
-                  "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiI5ODc2NTQzMjEiLCJlbWFpbCI6InRpdGlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MjUyMjk0MzU3MiwiaXNzIjoiYXV0aG9yaXphdGlvbi5raGVvcHMub25saW5lIiwiaWF0IjoxNTIyOTM5OTcyfQ.Csj6WCBDwZlXeUOE0nX6SmReZhGZayw2yZFKWzlwysE"
+                  "value": "{{user2_token}}"
                 }
               ]
             },
@@ -133,26 +132,26 @@
               "listen": "test",
               "script": {
                 "id": "6ea2d7bb-b849-4327-b8fe-c5003480b2d6",
-                "type": "text/javascript",
                 "exec": [
                   "// ensure healthy response code",
-                  "tests[\"Status code is 201\"] = responseCode.code === 201;",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
                   "var jsonObject = JSON.parse(responseBody);",
                   "",
                   "pm.environment.set(\"access_token_user3\", jsonObject.access_token);",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -174,7 +173,7 @@
                 },
                 {
                   "key": "assertion",
-                  "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiI5OTg4Nzc2NjU1IiwiZW1haWwiOiJ0YXRhQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJleHAiOjI1MjI5NDM1NzIsImlzcyI6ImF1dGhvcml6YXRpb24ua2hlb3BzLm9ubGluZSIsImlhdCI6MTUyMjkzOTk3Mn0.i8D9zxg1aQBjIMCBS921v7PBQ6Me2trR2a5TtVk0_Xs",
+                  "value": "{{user3_token}}",
                   "type": "text"
                 }
               ]
@@ -1224,20 +1223,20 @@
               "listen": "test",
               "script": {
                 "id": "6caac9ee-c5de-4c2a-a071-187a3ddf168b",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -1258,7 +1257,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_3}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_3}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -1575,20 +1574,20 @@
               "listen": "test",
               "script": {
                 "id": "43ce39fd-02e9-4fd1-9f27-f20b3cacd05d",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -1609,7 +1608,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_3}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_3}}/users/{{user2_mail}}"
           },
           "response": []
         },
@@ -3023,20 +3022,20 @@
               "listen": "test",
               "script": {
                 "id": "6caac9ee-c5de-4c2a-a071-187a3ddf168b",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3057,7 +3056,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_favorite_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_favorite_id_1}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -3483,20 +3482,20 @@
               "listen": "test",
               "script": {
                 "id": "42c61bda-274a-498c-bc85-243b637c6fef",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3517,7 +3516,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_favorite_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_favorite_id_1}}/users/{{user2_mail}}"
           },
           "response": []
         },
@@ -3785,7 +3784,6 @@
               "listen": "test",
               "script": {
                 "id": "af79aff8-0cf1-48cb-be26-9fcaebc2f2a6",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -3793,20 +3791,21 @@
                   "",
                   "tests[\"Return 1 user\"] = jsonObject.length === 1;",
                   "",
-                  "tests[\"user_name\"] = jsonObject[0].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name\"] = jsonObject[0].user_name == pm.globals.get(\"user1_mail\"); ",
                   "",
                   "tests[\"is_admin\"] = jsonObject[0].is_admin == true"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -3827,14 +3826,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -3853,9 +3846,12 @@
                   "",
                   "var jsonObject = JSON.parse(responseBody);",
                   "",
-                  "tests[\"email\"] = jsonObject.email == \"titi@gmail.com\"",
+                  "tests[\"email\"] = jsonObject.email == pm.variables.get(\"user2_mail\");",
                   "",
-                  "tests[\"sub\"] = jsonObject.sub == pm.environment.get(\"user2\");",
+                  "tests[\"sub\"] = jsonObject.sub == pm.variables.get(\"user2_id\");",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
                   ""
                 ],
                 "type": "text/javascript"
@@ -3893,7 +3889,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/users?reference={{user2}}",
+              "raw": "{{URL}}/users?reference={{user2_id}}",
               "host": [
                 "{{URL}}"
               ],
@@ -3903,7 +3899,7 @@
               "query": [
                 {
                   "key": "reference",
-                  "value": "{{user2}}",
+                  "value": "{{user2_id}}",
                   "equals": true
                 }
               ]
@@ -3921,7 +3917,14 @@
                 "id": "af79aff8-0cf1-48cb-be26-9fcaebc2f2a6",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
-                  ""
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"email\"] = jsonObject.email == pm.variables.get(\"user2_mail\");",
+                  "",
+                  "tests[\"sub\"] = jsonObject.sub == pm.variables.get(\"user2_id\");",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;"
                 ],
                 "type": "text/javascript"
               }
@@ -3958,7 +3961,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/users?reference=titi@gmail.com",
+              "raw": "{{URL}}/users?reference={{user2_mail}}",
               "host": [
                 "{{URL}}"
               ],
@@ -3968,7 +3971,7 @@
               "query": [
                 {
                   "key": "reference",
-                  "value": "titi@gmail.com",
+                  "value": "{{user2_mail}}",
                   "equals": true
                 }
               ]
@@ -4049,20 +4052,20 @@
               "listen": "test",
               "script": {
                 "id": "6caac9ee-c5de-4c2a-a071-187a3ddf168b",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4083,7 +4086,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -4151,39 +4154,41 @@
           "response": []
         },
         {
-          "_postman_id": "01745200-04d4-461b-bdc9-6dae15da604b",
-          "name": "get users album",
+          "_postman_id": "b7b7d61d-f636-4af1-bf97-6593437fb669",
+          "name": "get album with usersList-OK",
           "event": [
             {
               "listen": "test",
               "script": {
-                "id": "f8a173a0-4429-45da-b816-42f05e667f1e",
-                "type": "text/javascript",
+                "id": "28d0c565-ef9e-44df-9557-32886bb8cef9",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
                   "var jsonObject = JSON.parse(responseBody);",
                   "",
-                  "tests[\"Return 2 users\"] = jsonObject.length === 2;",
+                  "tests[\"album_id\"] = jsonObject.album_id == pm.environment.get(\"album_user_id_1\");",
                   "",
-                  "tests[\"user_name_0\"] = jsonObject[0].user_name == \"titi@gmail.com\"",
+                  "tests[\"number_of_users\"] = jsonObject.number_of_users == 2",
                   "",
-                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == false",
+                  "tests[\"users List size = 2\"] = jsonObject.users.length == 2;",
                   "",
-                  "tests[\"user_name_1\"] = jsonObject[1].user_name == \"toto@gmail.com\"",
+                  "tests[\"users List user 1\"] = jsonObject.users[0].user_name == pm.variables.get(\"user1_mail\"); ",
                   "",
-                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == true"
-                ]
+                  "tests[\"users List user 2\"] = jsonObject.users[1].user_name == pm.variables.get(\"user2_mail\"); "
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4204,14 +4209,85 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/album/{{album_user_id_1}}?includeUsers=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "album",
+                "{{album_user_id_1}}"
+              ],
+              "query": [
                 {
-                  "key": "description",
-                  "value": "{{description}}",
+                  "key": "includeUsers",
+                  "value": "true",
                   "type": "text"
                 }
               ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "01745200-04d4-461b-bdc9-6dae15da604b",
+          "name": "get users album",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "f8a173a0-4429-45da-b816-42f05e667f1e",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"Return 2 users\"] = jsonObject.length === 2;",
+                  "",
+                  "tests[\"user_name_0\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
+                  "",
+                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == true",
+                  "",
+                  "tests[\"user_name_1\"] = jsonObject[1].user_name == pm.variables.get(\"user2_mail\");",
+                  "",
+                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == false"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34930514-9077-47db-bf12-4dbf2c425f62",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token_user1}}"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -4225,20 +4301,20 @@
               "listen": "test",
               "script": {
                 "id": "a6f486ad-c871-4592-93ca-50e771b50037",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4259,7 +4335,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_mail}}/admin"
           },
           "response": []
         },
@@ -4271,7 +4347,6 @@
               "listen": "test",
               "script": {
                 "id": "d7f17c48-ba99-4eea-a130-2acd1f1fa552",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -4279,24 +4354,25 @@
                   "",
                   "tests[\"Return 2 users\"] = jsonObject.length === 2;",
                   "",
-                  "tests[\"user_name_0\"] = jsonObject[0].user_name == \"titi@gmail.com\"",
+                  "tests[\"user_name_0\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"is_admin_0\"] = jsonObject[0].is_admin == true",
                   "",
-                  "tests[\"user_name_1\"] = jsonObject[1].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name_1\"] = jsonObject[1].user_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"is_admin_1\"] = jsonObject[1].is_admin == true"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4317,14 +4393,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -4338,20 +4408,20 @@
               "listen": "test",
               "script": {
                 "id": "8ce76431-c502-4b35-bb2f-cdecefac9307",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4372,7 +4442,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}/admin"
           },
           "response": []
         },
@@ -4384,7 +4454,6 @@
               "listen": "test",
               "script": {
                 "id": "355843b1-94f4-40ea-84ae-25161168a6c7",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -4392,24 +4461,25 @@
                   "",
                   "tests[\"Return 2 users\"] = jsonObject.length === 2;",
                   "",
-                  "tests[\"user_name_0\"] = jsonObject[0].user_name == \"titi@gmail.com\"",
+                  "tests[\"user_name_0\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == false",
+                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == true",
                   "",
-                  "tests[\"user_name_1\"] = jsonObject[1].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name_1\"] = jsonObject[1].user_name == pm.variables.get(\"user2_mail\");",
                   "",
-                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == true"
-                ]
+                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == false"
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4430,14 +4500,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -4451,20 +4515,20 @@
               "listen": "test",
               "script": {
                 "id": "43ce39fd-02e9-4fd1-9f27-f20b3cacd05d",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4485,7 +4549,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -4560,7 +4624,6 @@
               "listen": "test",
               "script": {
                 "id": "25a12489-954b-4946-9281-873708866221",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -4568,21 +4631,22 @@
                   "",
                   "tests[\"Return 1 user\"] = jsonObject.length === 1;",
                   "",
-                  "tests[\"user_name_0\"] = jsonObject[0].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name_0\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"is_admin_0\"] = jsonObject[0].is_admin == true",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4603,14 +4667,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -4624,20 +4682,20 @@
               "listen": "test",
               "script": {
                 "id": "2c93a6e4-8f3e-4dbe-8f69-01a3542ca24f",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4658,7 +4716,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_mail}}"
           },
           "response": []
         },
@@ -4670,7 +4728,6 @@
               "listen": "test",
               "script": {
                 "id": "e03a4977-98f1-4ce2-ba36-4001a5a7aa9d",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -4678,24 +4735,25 @@
                   "",
                   "tests[\"Return 2 users\"] = jsonObject.length === 2;",
                   "",
-                  "tests[\"user_name_0\"] = jsonObject[0].user_name == \"titi@gmail.com\"",
+                  "tests[\"user_name_0\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == false",
+                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == true",
                   "",
-                  "tests[\"user_name_1\"] = jsonObject[1].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name_1\"] = jsonObject[1].user_name == pm.variables.get(\"user2_mail\");",
                   "",
-                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == true"
-                ]
+                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == false"
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4716,14 +4774,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -4737,20 +4789,20 @@
               "listen": "test",
               "script": {
                 "id": "42c61bda-274a-498c-bc85-243b637c6fef",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4771,7 +4823,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -4783,7 +4835,6 @@
               "listen": "test",
               "script": {
                 "id": "f79d5626-5f03-4f85-bef1-2a948f63051d",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -4791,20 +4842,21 @@
                   "",
                   "tests[\"Return 2 users\"] = jsonObject.length === 1;",
                   "",
-                  "tests[\"user_name\"] = jsonObject[0].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"is_admin\"] = jsonObject[0].is_admin == true"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4825,14 +4877,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -4846,20 +4892,20 @@
               "listen": "test",
               "script": {
                 "id": "3655d83b-f76d-4dc2-994e-57e287da2039",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 404\"] = responseCode.code === 404;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4880,7 +4926,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -4926,7 +4972,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_mail}}"
           },
           "response": []
         },
@@ -4938,20 +4984,20 @@
               "listen": "test",
               "script": {
                 "id": "d9f47810-b5c0-4c3e-bf3e-058307df3914",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -4972,7 +5018,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_mail}}"
           },
           "response": []
         },
@@ -4984,7 +5030,6 @@
               "listen": "test",
               "script": {
                 "id": "67dbddfb-9184-42d0-b69e-8aa0a577d7c2",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -4992,24 +5037,25 @@
                   "",
                   "tests[\"Return 2 users\"] = jsonObject.length === 2;",
                   "",
-                  "tests[\"user_name_0\"] = jsonObject[0].user_name == \"titi@gmail.com\"",
+                  "tests[\"user_name_0\"] = jsonObject[0].user_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == false",
+                  "tests[\"is_admin_0\"] = jsonObject[0].is_admin == true",
                   "",
-                  "tests[\"user_name_1\"] = jsonObject[1].user_name == \"toto@gmail.com\"",
+                  "tests[\"user_name_1\"] = jsonObject[1].user_name == pm.variables.get(\"user2_mail\");",
                   "",
-                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == true"
-                ]
+                  "tests[\"is_admin_1\"] = jsonObject[1].is_admin == false"
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5030,14 +5076,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "description",
-                  "value": "{{description}}",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": "{{URL}}/album/{{album_user_id_1}}/users"
           },
@@ -5051,20 +5091,20 @@
               "listen": "test",
               "script": {
                 "id": "38990284-96e1-4bdc-a21b-11ed93122674",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 403\"] = responseCode.code === 403;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5085,7 +5125,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}/admin"
           },
           "response": []
         },
@@ -5097,20 +5137,20 @@
               "listen": "test",
               "script": {
                 "id": "9267969e-8d15-4677-a4f9-f950a4f6f62a",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 403\"] = responseCode.code === 403;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5131,7 +5171,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user1}}/admin"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user1_mail}}/admin"
           },
           "response": []
         },
@@ -5143,20 +5183,20 @@
               "listen": "test",
               "script": {
                 "id": "a6f486ad-c871-4592-93ca-50e771b50037",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5177,7 +5217,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_mail}}/admin"
           },
           "response": []
         },
@@ -5256,20 +5296,20 @@
               "listen": "test",
               "script": {
                 "id": "8ce76431-c502-4b35-bb2f-cdecefac9307",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5290,7 +5330,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user2_id}}/admin"
           },
           "response": []
         },
@@ -5365,20 +5405,20 @@
               "listen": "test",
               "script": {
                 "id": "42c61bda-274a-498c-bc85-243b637c6fef",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5399,7 +5439,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user1}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user1_mail}}"
           },
           "response": []
         },
@@ -5411,20 +5451,20 @@
               "listen": "test",
               "script": {
                 "id": "482ed9e7-17d2-4a7f-aa1d-23849eb41124",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5445,7 +5485,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user1}}"
+            "url": "{{URL}}/album/{{album_user_id_1}}/users/{{user1_id}}"
           },
           "response": []
         },
@@ -5706,7 +5746,6 @@
               "listen": "test",
               "script": {
                 "id": "0b2cbfe7-a935-4df8-a287-a6ce721b6b4d",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -5718,22 +5757,23 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment\"] = jsonObject[0].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private\"] = jsonObject[0].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5754,14 +5794,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments",
@@ -5865,20 +5899,20 @@
               "listen": "test",
               "script": {
                 "id": "df6a6d48-2274-46b3-bd9b-a3016c472d11",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 404\"] = responseCode.code === 404;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5908,7 +5942,7 @@
                 },
                 {
                   "key": "to_user",
-                  "value": "{{user2}}",
+                  "value": "{{user2_id}}",
                   "description": "",
                   "type": "text"
                 }
@@ -5926,20 +5960,20 @@
               "listen": "test",
               "script": {
                 "id": "6767f85f-4f99-43d7-872c-186d740dae12",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -5960,7 +5994,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_comment}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_comment}}/users/{{user2_mail}}"
           },
           "response": []
         },
@@ -5972,20 +6006,20 @@
               "listen": "test",
               "script": {
                 "id": "6767f85f-4f99-43d7-872c-186d740dae12",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6006,7 +6040,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_comment}}/users/{{user3}}"
+            "url": "{{URL}}/album/{{album_id_comment}}/users/{{user3_id}}"
           },
           "response": []
         },
@@ -6018,20 +6052,20 @@
               "listen": "test",
               "script": {
                 "id": "6394d760-a827-4bb3-9b2b-327181c02fcd",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6061,7 +6095,7 @@
                 },
                 {
                   "key": "to_user",
-                  "value": "{{user2}}",
+                  "value": "{{user2_mail}}",
                   "description": "",
                   "type": "text"
                 }
@@ -6079,7 +6113,6 @@
               "listen": "test",
               "script": {
                 "id": "4cf72b03-1be4-47ed-a0c5-e19362705733",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6091,18 +6124,18 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 3\"",
                   "",
                   "tests[\"is_private_0\"] = jsonObject[0].is_private == true",
                   "",
-                  "tests[\"target_name_0\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name_0\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 2\"",
                   "",
@@ -6112,22 +6145,23 @@
                   "",
                   "tests[\"event_type_2\"] = jsonObject[2].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_2\"] = jsonObject[2].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_2\"] = jsonObject[2].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_2\"] = jsonObject[2].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private_2\"] = jsonObject[2].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6148,14 +6182,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments",
@@ -6186,7 +6214,6 @@
               "listen": "test",
               "script": {
                 "id": "f0e82f41-5bb9-421b-b91b-c214e12285f5",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6198,18 +6225,18 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 3\"",
                   "",
                   "tests[\"is_private_0\"] = jsonObject[0].is_private == true",
                   "",
-                  "tests[\"target_name_0\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name_0\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 2\"",
                   "",
@@ -6219,22 +6246,23 @@
                   "",
                   "tests[\"event_type_2\"] = jsonObject[2].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_2\"] = jsonObject[2].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_2\"] = jsonObject[2].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_2\"] = jsonObject[2].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private_2\"] = jsonObject[2].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6255,14 +6283,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments",
@@ -6293,7 +6315,6 @@
               "listen": "test",
               "script": {
                 "id": "a9a343de-4a7e-4cc1-9e42-9ced07b09750",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6306,7 +6327,7 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 2\"",
                   "",
@@ -6316,22 +6337,23 @@
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private_1\"] = jsonObject[1].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6352,14 +6374,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments",
@@ -6390,7 +6406,6 @@
               "listen": "test",
               "script": {
                 "id": "fcb8cbea-2f02-4b25-b805-6f5d69d4dff3",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6402,33 +6417,34 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 3\"",
                   "",
                   "tests[\"is_private_0\"] = jsonObject[0].is_private == true",
                   "",
-                  "tests[\"target_name_0\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name_0\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 2\"",
                   "",
                   "tests[\"is_private_1\"] = jsonObject[1].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6449,14 +6465,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&limit=2",
@@ -6492,7 +6502,6 @@
               "listen": "test",
               "script": {
                 "id": "9ed86b3e-3539-4789-b567-c7a9545d1b78",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6504,33 +6513,34 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 3\"",
                   "",
                   "tests[\"is_private_0\"] = jsonObject[0].is_private == true",
                   "",
-                  "tests[\"target_name_0\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name_0\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 2\"",
                   "",
                   "tests[\"is_private_1\"] = jsonObject[1].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6551,14 +6561,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&limit=2",
@@ -6594,7 +6598,6 @@
               "listen": "test",
               "script": {
                 "id": "8fdccdd7-1284-40e5-96f9-06a56236ad60",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6608,7 +6611,7 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 2\"",
                   "",
@@ -6618,22 +6621,23 @@
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private_1\"] = jsonObject[1].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6654,14 +6658,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&limit=2",
@@ -6697,7 +6695,6 @@
               "listen": "test",
               "script": {
                 "id": "7b653e07-4eb9-481c-bfa6-b7beb2b52eee",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6709,7 +6706,7 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 2\"",
                   "",
@@ -6718,22 +6715,23 @@
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private_1\"] = jsonObject[1].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6754,14 +6752,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&offset=1",
@@ -6797,7 +6789,6 @@
               "listen": "test",
               "script": {
                 "id": "e4b8bd12-d92f-45c0-94a6-4a6c6bae021a",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6809,7 +6800,7 @@
                   "",
                   "tests[\"event_type_0\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_0\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_0\"] = jsonObject[0].comment == \"comment 2\"",
                   "",
@@ -6818,22 +6809,23 @@
                   "",
                   "tests[\"event_type_1\"] = jsonObject[1].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name_1\"] = jsonObject[1].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment_1\"] = jsonObject[1].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private_1\"] = jsonObject[1].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6854,14 +6846,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&offset=1",
@@ -6897,7 +6883,6 @@
               "listen": "test",
               "script": {
                 "id": "a909510f-ba23-4a78-a626-6343a8dc54d1",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -6909,22 +6894,23 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment\"] = jsonObject[0].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private\"] = jsonObject[0].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -6945,14 +6931,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&offset=1",
@@ -6988,7 +6968,6 @@
               "listen": "test",
               "script": {
                 "id": "743b399e-317e-42d6-a74a-b23f39a6e8e1",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -7000,22 +6979,23 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment\"] = jsonObject[0].comment == \"comment 2\"",
                   "",
                   "tests[\"is_private\"] = jsonObject[0].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7036,14 +7016,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&limit=1&offset=1",
@@ -7084,7 +7058,6 @@
               "listen": "test",
               "script": {
                 "id": "6b25b7cd-6091-42a6-a825-279b4689e467",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -7096,23 +7069,24 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment\"] = jsonObject[0].comment == \"comment 2\"",
                   "",
                   "tests[\"is_private\"] = jsonObject[0].is_private == false",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7133,14 +7107,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&limit=1&offset=1",
@@ -7181,7 +7149,6 @@
               "listen": "test",
               "script": {
                 "id": "11c6cc7d-0c9a-455f-bf4b-07f9fa50c0c2",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -7193,22 +7160,23 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Comment\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"comment\"] = jsonObject[0].comment == \"comment 1\"",
                   "",
                   "tests[\"is_private\"] = jsonObject[0].is_private == false"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "81c46b78-6051-403a-b41d-10343c01a237",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7229,14 +7197,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_comment}}/events?types=comments&limit=1&offset=1",
@@ -7551,7 +7513,6 @@
               "listen": "test",
               "script": {
                 "id": "fdbc61ea-6376-4fdc-9e04-a02623cd8435",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -7563,20 +7524,20 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"CREATE_ALBUM\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "2b17e94a-964d-4ee5-b898-92d5614240ac",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -7587,7 +7548,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7608,14 +7570,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -7651,20 +7607,20 @@
               "listen": "test",
               "script": {
                 "id": "6767f85f-4f99-43d7-872c-186d740dae12",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7685,7 +7641,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -7697,7 +7653,6 @@
               "listen": "test",
               "script": {
                 "id": "5422f18f-a8bc-4469-b61e-473615c3f6c1",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -7709,21 +7664,21 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"target_name\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"ADD_USER\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "e3489fc7-e27c-44eb-9b6e-cb1a5b3c4d38",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -7734,7 +7689,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7755,14 +7711,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -7798,20 +7748,20 @@
               "listen": "test",
               "script": {
                 "id": "42c61bda-274a-498c-bc85-243b637c6fef",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7832,7 +7782,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -7844,7 +7794,6 @@
               "listen": "test",
               "script": {
                 "id": "c6b242b9-cc21-42d9-9640-46557d1f8edf",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -7856,19 +7805,19 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"titi@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"LEAVE_ALBUM\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "e254f57d-41e7-42b3-a7ab-22ef4c94304f",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -7879,7 +7828,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7900,14 +7850,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -7943,20 +7887,20 @@
               "listen": "test",
               "script": {
                 "id": "a6f486ad-c871-4592-93ca-50e771b50037",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -7977,7 +7921,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2_mail}}/admin"
           },
           "response": []
         },
@@ -7989,7 +7933,6 @@
               "listen": "test",
               "script": {
                 "id": "a9d09304-8fdc-470e-81b0-5c116a85c332",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -8001,21 +7944,21 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"target_name\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"ADD_ADMIN\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "de75bd05-025f-4f7e-bb2d-660ffc9bc1aa",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -8026,7 +7969,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8047,14 +7991,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -8090,20 +8028,20 @@
               "listen": "test",
               "script": {
                 "id": "8ce76431-c502-4b35-bb2f-cdecefac9307",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8124,7 +8062,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2_mail}}/admin"
           },
           "response": []
         },
@@ -8136,7 +8074,6 @@
               "listen": "test",
               "script": {
                 "id": "f0fcde6e-c8a3-4263-bbff-e66748b4fd58",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -8148,21 +8085,21 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"target_name\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"DEMOTE_ADMIN\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "b0c6bb40-637a-4c28-85c6-9d5c308c2444",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -8173,7 +8110,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8194,14 +8132,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -8237,20 +8169,20 @@
               "listen": "test",
               "script": {
                 "id": "a6f486ad-c871-4592-93ca-50e771b50037",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8271,7 +8203,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2}}/admin"
+            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2_id}}/admin"
           },
           "response": []
         },
@@ -8283,7 +8215,6 @@
               "listen": "test",
               "script": {
                 "id": "0832f5f3-d3e3-426f-82d9-9bc3afa7c6a9",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -8295,21 +8226,21 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"target_name\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"PROMOTE_ADMIN\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "de75bd05-025f-4f7e-bb2d-660ffc9bc1aa",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -8320,7 +8251,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8341,14 +8273,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -8384,20 +8310,20 @@
               "listen": "test",
               "script": {
                 "id": "43ce39fd-02e9-4fd1-9f27-f20b3cacd05d",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 204\"] = responseCode.code === 204;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8418,7 +8344,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_mutation}}/users/{{user2_id}}"
           },
           "response": []
         },
@@ -8430,7 +8356,6 @@
               "listen": "test",
               "script": {
                 "id": "52f5e3f7-e670-46fb-85e7-0046c5836bde",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
@@ -8442,21 +8367,21 @@
                   "",
                   "tests[\"event_type\"] = jsonObject[0].event_type ==  \"Mutation\"",
                   "",
-                  "tests[\"origin_name\"] = jsonObject[0].origin_name == \"toto@gmail.com\"",
+                  "tests[\"origin_name\"] = jsonObject[0].origin_name == pm.variables.get(\"user1_mail\");",
                   "",
-                  "tests[\"target_name\"] = jsonObject[0].target_name == \"titi@gmail.com\"",
+                  "tests[\"target_name\"] = jsonObject[0].target_name == pm.variables.get(\"user2_mail\");",
                   "",
                   "tests[\"mutation_type\"] = jsonObject[0].mutation_type == \"REMOVE_USER\"",
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "93296f51-f95e-435b-bee2-46b9f377a49c",
-                "type": "text/javascript",
                 "exec": [
                   "function wait(ms)",
                   "{",
@@ -8467,7 +8392,8 @@
                   "}",
                   "",
                   "wait(3000);"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -8488,14 +8414,8 @@
               }
             ],
             "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "comment",
-                  "value": "my first comment",
-                  "type": "text"
-                }
-              ]
+              "mode": "raw",
+              "raw": ""
             },
             "url": {
               "raw": "{{URL}}/album/{{album_id_mutation}}/events?types=mutations&limit=1",
@@ -9415,10 +9335,10 @@
               "listen": "test",
               "script": {
                 "id": "910b5a1b-c53f-452d-b508-6170179cf2a3",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -9435,7 +9355,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{URL}}/studies/{{study_UID}}/users/{{user2}}?inbox=true",
+              "raw": "{{URL}}/studies/{{study_UID}}/users/{{user2_mail}}?inbox=true",
               "host": [
                 "{{URL}}"
               ],
@@ -9443,7 +9363,7 @@
                 "studies",
                 "{{study_UID}}",
                 "users",
-                "{{user2}}"
+                "{{user2_mail}}"
               ],
               "query": [
                 {
@@ -9625,20 +9545,20 @@
               "listen": "test",
               "script": {
                 "id": "6caac9ee-c5de-4c2a-a071-187a3ddf168b",
-                "type": "text/javascript",
                 "exec": [
                   "tests[\"Status code is 201\"] = responseCode.code === 201;"
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "prerequest",
               "script": {
                 "id": "34930514-9077-47db-bf12-4dbf2c425f62",
-                "type": "text/javascript",
                 "exec": [
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -9659,7 +9579,7 @@
               }
             ],
             "body": {},
-            "url": "{{URL}}/album/{{album_id_sharing2}}/users/{{user2}}"
+            "url": "{{URL}}/album/{{album_id_sharing2}}/users/{{user2_id}}"
           },
           "response": []
         },

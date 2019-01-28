@@ -13,12 +13,12 @@
           "listen": "test",
           "script": {
             "id": "dd3b67c8-14b1-4380-a019-f47dc147c974",
-            "type": "text/javascript",
             "exec": [
-              "// ensure healthy response code",
+              "// ensure healthy response code change",
               "tests[\"Status code is 401\"] = responseCode.code === 401;",
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -57,22 +57,22 @@
           "listen": "test",
           "script": {
             "id": "024fc40a-0459-4f04-a716-1850369e15bd",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 400\"] = responseCode.code === 400;",
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
             "exec": [
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -94,64 +94,7 @@
             },
             {
               "key": "assertion",
-              "value": "123456789",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
-      "_postman_id": "638ec8a8-53a6-4bcb-a97f-91f9dbaaa8b7",
-      "name": "create user1-create",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "83822f04-38b7-400f-bc35-7a638a6d5e26",
-            "type": "text/javascript",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 201\"] = responseCode.code === 201;",
-              "",
-              "var jsonObject = JSON.parse(responseBody);",
-              "",
-              "pm.environment.set(\"access_token_user1\", jsonObject.access_token);"
-            ]
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:ietf:params:oauth:grant-type:jwt-bearer",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiIxMjM0NTY3ODkiLCJlbWFpbCI6InRvdG9AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MjUyMjk0MzU3MiwiaXNzIjoiYXV0aG9yaXphdGlvbi5raGVvcHMub25saW5lIiwiaWF0IjoxNTIyOTM5OTcyfQ.916Xn1BnUwdhOvuWErWWOh_AkYXeS36mVRTP06VWsVA",
+              "value": "{{user1_token}}",
               "type": "text"
             }
           ]
@@ -168,7 +111,6 @@
           "listen": "test",
           "script": {
             "id": "b4cc6eaa-d3f9-46ae-9817-8bce26dde4e3",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -176,17 +118,18 @@
               "var jsonObject = JSON.parse(responseBody);",
               "",
               "pm.environment.set(\"access_token_user1\", jsonObject.access_token);"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
             "exec": [
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -208,65 +151,7 @@
             },
             {
               "key": "assertion",
-              "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiIxMjM0NTY3ODkiLCJlbWFpbCI6InRvdG9AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MjUyMjk0MzU3MiwiaXNzIjoiYXV0aG9yaXphdGlvbi5raGVvcHMub25saW5lIiwiaWF0IjoxNTIyOTM5OTcyfQ.916Xn1BnUwdhOvuWErWWOh_AkYXeS36mVRTP06VWsVA",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
-      "_postman_id": "d6ee61da-a9f3-4d85-af93-6cc20946daa7",
-      "name": "create user2-create",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "3366818a-20f6-439d-bb8c-8a7d4fc40b9d",
-            "type": "text/javascript",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 201\"] = responseCode.code === 201;",
-              "",
-              "var jsonObject = JSON.parse(responseBody);",
-              "",
-              "pm.environment.set(\"access_token_user2\", jsonObject.access_token);",
-              ""
-            ]
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:ietf:params:oauth:grant-type:jwt-bearer",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiI5ODc2NTQzMjEiLCJlbWFpbCI6InRpdGlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MjUyMjk0MzU3MiwiaXNzIjoiYXV0aG9yaXphdGlvbi5raGVvcHMub25saW5lIiwiaWF0IjoxNTIyOTM5OTcyfQ.Csj6WCBDwZlXeUOE0nX6SmReZhGZayw2yZFKWzlwysE",
+              "value": "{{user1_token}}",
               "type": "text"
             }
           ]
@@ -283,7 +168,6 @@
           "listen": "test",
           "script": {
             "id": "49ce3e58-085d-4826-b75d-678695216dd9",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -291,17 +175,18 @@
               "var jsonObject = JSON.parse(responseBody);",
               "",
               "pm.environment.set(\"access_token_user2\", jsonObject.access_token);"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
             "exec": [
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -323,7 +208,7 @@
             },
             {
               "key": "assertion",
-              "value": "eyJhbGciOiJIUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJhdXRob3JpemF0aW9uLmtoZW9wcy5vbmxpbmUiLCJzdWIiOiI5ODc2NTQzMjEiLCJlbWFpbCI6InRpdGlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MjUyMjk0MzU3MiwiaXNzIjoiYXV0aG9yaXphdGlvbi5raGVvcHMub25saW5lIiwiaWF0IjoxNTIyOTM5OTcyfQ.Csj6WCBDwZlXeUOE0nX6SmReZhGZayw2yZFKWzlwysE",
+              "value": "{{user2_token}}",
               "type": "text"
             }
           ]
@@ -466,10 +351,10 @@
           "listen": "test",
           "script": {
             "id": "902ac2e1-2bd5-4dc2-88d5-6a4a50fab1ef",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -485,7 +370,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user2}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user2_mail}}"
       },
       "response": []
     },
@@ -569,10 +454,10 @@
           "listen": "test",
           "script": {
             "id": "e0df1af4-d60d-483c-8f80-daf27eda7d88",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 400\"] = responseCode.code === 400;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -588,7 +473,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/999999/series/{{series_UID}}/users/{{user2}}"
+        "url": "{{URL}}/studies/999999/series/{{series_UID}}/users/{{user2_id}}"
       },
       "response": []
     },
@@ -600,10 +485,10 @@
           "listen": "test",
           "script": {
             "id": "a7a99777-593d-4a1f-af9c-fc5271f0efe0",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 404\"] = responseCode.code === 404;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -619,7 +504,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}99/series/{{series_UID}}/users/{{user2}}"
+        "url": "{{URL}}/studies/{{study_UID}}99/series/{{series_UID}}/users/{{user2_id}}"
       },
       "response": []
     },
@@ -631,10 +516,10 @@
           "listen": "test",
           "script": {
             "id": "7e86d12d-13a0-40e2-ad8d-ebdf34f38359",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 400\"] = responseCode.code === 400;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -650,7 +535,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/999999/users/{{user2}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/999999/users/{{user2_mail}}"
       },
       "response": []
     },
@@ -662,10 +547,10 @@
           "listen": "test",
           "script": {
             "id": "e6a9dcd2-7f11-4482-8ad8-e4d66d189468",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 404\"] = responseCode.code === 404;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -681,7 +566,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}99/users/{{user2}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}99/users/{{user2_mail}}"
       },
       "response": []
     },
@@ -693,10 +578,10 @@
           "listen": "test",
           "script": {
             "id": "869eb9c0-0153-4a03-96e9-27a943d41fc2",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 401\"] = responseCode.code === 401;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -712,7 +597,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user2}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user2_mail}}"
       },
       "response": []
     },
@@ -1043,10 +928,10 @@
           "listen": "test",
           "script": {
             "id": "6317996c-4645-4546-82ad-9a1fa34f2de7",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 404\"] = responseCode.code === 404;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -1062,7 +947,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user2}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user2_id}}"
       },
       "response": []
     },
@@ -1074,10 +959,10 @@
           "listen": "test",
           "script": {
             "id": "902ac2e1-2bd5-4dc2-88d5-6a4a50fab1ef",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -1093,7 +978,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user1}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user1_id}}"
       },
       "response": []
     },
@@ -1106,7 +991,6 @@
           "script": {
             "id": "a5055b06-d516-4117-b4f9-60329a2c6126",
             "exec": [
-              "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;",
               "",
               "tests[\"Not empty response []\"] = responseBody != \"[]\"",
@@ -1374,10 +1258,10 @@
           "listen": "test",
           "script": {
             "id": "902ac2e1-2bd5-4dc2-88d5-6a4a50fab1ef",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -1393,7 +1277,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user1}}"
+        "url": "{{URL}}/studies/{{study_UID}}/series/{{series_UID}}/users/{{user1_mail}}"
       },
       "response": []
     },
@@ -1477,10 +1361,10 @@
           "listen": "test",
           "script": {
             "id": "176d6e9b-ba29-40d3-a30f-b19557579d19",
-            "type": "text/javascript",
             "exec": [
               "tests[\"Status code is 404\"] = responseCode.code === 404;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
@@ -1496,7 +1380,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{URL}}/studies/{{study_UID}}99/users/{{user1}}"
+        "url": "{{URL}}/studies/{{study_UID}}99/users/{{user1_id}}"
       },
       "response": []
     },
