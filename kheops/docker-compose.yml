@@ -13,17 +13,6 @@ services:
       - dcm4chee-ldap-slapdd:/etc/ldap/slapd.d
     restart: on-failure
 
-  db:
-    container_name: db
-    image: osirixfoundation/kheops-database:${KHEOPS_DATABASE_IMAGE_TAG}
-    volumes:
-      - kheops-db-data:/var/lib/postgresql/data
-    env_file: docker-compose.env
-    secrets:
-      - kheops_authdb_pass
-      - kheops_pacsdb_pass
-    restart: on-failure
-
   arc:
     container_name: pacsarc
     image: osirixfoundation/kheops-dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
@@ -37,18 +26,17 @@ services:
     env_file: docker-compose.env
     environment:
       WILDFLY_CHOWN: /storage /opt/wildfly/standalone
-      WILDFLY_WAIT_FOR: ldap:389 db:5432
+      WILDFLY_WAIT_FOR: ldap:389
       JAVA_OPTS: -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n
     secrets:
       - kheops_pacsdb_pass
     depends_on:
       - ldap
-      - db
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
-      - dcm4chee-arc-wildfly:/opt/wildfly/standalone
-      - /dcm4chee-arc/storage:/storage
+      - /medirad3_archive:/opt/wildfly/standalone
+      - /medirad3_archive:/storage
     restart: on-failure
 
   kheops-authorization:
@@ -60,7 +48,6 @@ services:
     restart: on-failure
     env_file: docker-compose.env
     depends_on:
-      - db
       - arc
     secrets:
       - kheops_superuser_hmasecret
@@ -96,17 +83,17 @@ services:
 
   kheops-viewer:
     container_name: kheopsviewer
-    image: osirixfoundation/kheops-viewer:${KHEOPS_VIEWER_IMAGE_TAG}
+    image: osirixfoundation/kheops-ui:${KHEOPS_VIEWER_IMAGE_TAG}
     # ports:
       #- "3000:3000"
-
     env_file: docker-compose.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
     restart: on-failure
     secrets:
-      - OAuth2_secret
+      - fullchain1.pem
+      - privkey1.pem
     depends_on:
       - kheops-authorization
       - arc
@@ -170,6 +157,3 @@ secrets:
 volumes:
   dcm4chee-ldap-ldap:
   dcm4chee-ldap-slapdd:
-  dcm4chee-db-data:
-  dcm4chee-arc-wildfly:
-  kheops-db-data:
