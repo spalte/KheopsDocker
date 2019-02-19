@@ -197,6 +197,102 @@
           "response": []
         },
         {
+          "_postman_id": "54655aae-f94a-41ef-90b3-09450362c4a8",
+          "name": "user2 get studies list-empty",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5ff53cd5-f3a8-4802-8eab-b6f709895551",
+                "exec": [
+                  "// ensure healthy response code debug",
+                  "tests[\"Status code is 204\"] = responseCode.code === 204;"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4f41b5a2-2751-45af-aba5-a23c0c837907",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user2_token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/dicom+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{URL}}/studies"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9b52e1d7-72a6-4d4d-b658-71636f153425",
+          "name": "user3 get studies list-empty",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5ff53cd5-f3a8-4802-8eab-b6f709895551",
+                "exec": [
+                  "tests[\"Status code is 204\"] = responseCode.code === 204;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4f41b5a2-2751-45af-aba5-a23c0c837907",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user3_token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/dicom+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{URL}}/studies"
+          },
+          "response": []
+        },
+        {
           "_postman_id": "97c93148-e468-4aff-8615-92a35031d09e",
           "name": "Share with user2 study1",
           "event": [
@@ -6785,13 +6881,14 @@
             }
           ],
           "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token_user1}}"
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
               }
-            ],
+            },
+            "method": "PUT",
+            "header": [],
             "body": {
               "mode": "raw",
               "raw": ""
@@ -6833,13 +6930,14 @@
             }
           ],
           "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token_user1}}"
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
               }
-            ],
+            },
+            "method": "PUT",
+            "header": [],
             "body": {
               "mode": "raw",
               "raw": ""

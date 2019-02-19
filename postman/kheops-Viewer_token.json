@@ -23,7 +23,7 @@
                   "",
                   "tests[\"[INFO] Response: \" + responseBody] = true;",
                   "",
-                  "tests[\"[INFO] token: \" + pm.environment.get(\"access_token_user1\")] = true;",
+                  "tests[\"[INFO] token: \" + pm.environment.get(\"user1_token\")] = true;",
                   ""
                 ],
                 "type": "text/javascript"
@@ -66,6 +66,7 @@
                   "tests[\"Status code is 200\"] = responseCode.code === 200;",
                   "",
                   "let totalCount = parseInt(postman.getResponseHeader(\"X-Total-Count\"));",
+                  "",
                   "if (totalCount === 1) {",
                   "    tests[\"X-Total-Count = 1\"] = true;",
                   "} else {",
@@ -130,6 +131,7 @@
                   "",
                   "var jsonObject = JSON.parse(responseBody);",
                   "",
+                  "//save the viewer token in an env var",
                   "pm.environment.set(\"viewer_token_user1\", jsonObject.access_token);"
                 ],
                 "type": "text/javascript"
@@ -417,12 +419,14 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
             "method": "GET",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token_user1}}"
-              },
               {
                 "key": "Accept",
                 "value": "application/dicom+json"
@@ -456,12 +460,14 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{viewer_token_user1}}"
+              }
+            },
             "method": "GET",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{viewer_token_user1}}"
-              },
               {
                 "key": "Accept",
                 "value": "application/dicom+json"
@@ -514,12 +520,14 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
             "method": "POST",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token_user1}}"
-              },
               {
                 "key": "Accept",
                 "value": "application/json"
@@ -649,12 +657,14 @@
             }
           ],
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{viewer_token_capability}}"
+              }
+            },
             "method": "GET",
             "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{viewer_token_capability}}"
-              },
               {
                 "key": "Accept",
                 "value": "application/dicom+json"
@@ -687,6 +697,7 @@
               "",
               "pm.environment.set(\"album_id_1\", jsonObject.album_id);",
               "",
+              "//get the album id",
               "tests[\"album_id\"] = jsonObject.album_id == pm.environment.get(\"album_id_1\");",
               "",
               "tests[\"name\"] = jsonObject.name == \"name 1\"",
