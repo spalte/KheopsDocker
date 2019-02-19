@@ -6,63 +6,6 @@
   },
   "item": [
     {
-      "_postman_id": "8dffc047-2af3-4216-a2bf-2e72303e1084",
-      "name": "create user1-create",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "83822f04-38b7-400f-bc35-7a638a6d5e26",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 200\"] = responseCode.code === 200;",
-              "",
-              "var jsonObject = JSON.parse(responseBody);",
-              "",
-              "pm.environment.set(\"access_token_user1\", jsonObject.access_token);"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:ietf:params:oauth:grant-type:jwt-bearer",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "{{user1_token}}",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
       "_postman_id": "3bf87818-430e-4896-8860-f561afbb21f1",
       "name": "STOW RS inside inbox user 1",
       "event": [
@@ -70,24 +13,26 @@
           "listen": "test",
           "script": {
             "id": "7524252c-94ee-4cd1-8780-15785472765a",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
           {
             "key": "Content-Type",
             "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
           }
         ],
         "body": {
@@ -108,7 +53,6 @@
           "listen": "test",
           "script": {
             "id": "a5055b06-d516-4117-b4f9-60329a2c6126",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -116,27 +60,30 @@
               "tests[\"Not empty response []\"] = responseBody != \"[]\"",
               "",
               "pm.environment.set(\"tempDicomData\", responseBody);"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "fbf4e0e6-dc5f-4d19-8857-6ec861ef624e",
-            "type": "text/javascript",
             "exec": [
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "GET",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/dicom+json"
@@ -187,12 +134,14 @@
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -240,12 +189,14 @@
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{secret_capability_token}}"
+          }
+        },
         "method": "GET",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{secret_capability_token}}"
-          },
           {
             "key": "Accept",
             "type": "text",
@@ -278,13 +229,14 @@
         }
       ],
       "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{secret_capability_token}}"
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{secret_capability_token}}"
           }
-        ],
+        },
+        "method": "GET",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": ""
@@ -327,13 +279,14 @@
         }
       ],
       "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{secret_capability_token}}"
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{secret_capability_token}}"
           }
-        ],
+        },
+        "method": "GET",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": ""
@@ -413,12 +366,14 @@
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{secret_capability_token}}"
+          }
+        },
         "method": "GET",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{secret_capability_token}}"
-          },
           {
             "key": "Accept",
             "value": "application/zip",

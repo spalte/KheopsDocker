@@ -6,62 +6,6 @@
   },
   "item": [
     {
-      "_postman_id": "a602e128-08f6-47d1-9e4d-39b15768d19d",
-      "name": "create user1-OK",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "7d254f79-8603-4eab-9239-23ac1867331a",
-            "exec": [
-              "tests[\"Status code is 200\"] = responseCode.code === 200;",
-              "",
-              "var jsonObject = JSON.parse(responseBody);",
-              "",
-              "pm.environment.set(\"access_token_user1\", jsonObject.access_token);"
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:ietf:params:oauth:grant-type:jwt-bearer",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "{{user1_token}}",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
       "_postman_id": "1b491c9c-b17b-4f0f-b801-0ad6e04f8516",
       "name": "Get a capability tokens user1-no token",
       "event": [
@@ -81,13 +25,14 @@
         }
       ],
       "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
           }
-        ],
+        },
+        "method": "GET",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": ""
@@ -135,12 +80,14 @@
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -195,13 +142,14 @@
         }
       ],
       "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
           }
-        ],
+        },
+        "method": "GET",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": ""
@@ -349,12 +297,14 @@
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "GET",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/dicom+json"
@@ -410,7 +360,6 @@
           "listen": "test",
           "script": {
             "id": "b2d0b30a-988a-41ce-bf8e-3a16aa0c257b",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 201\"] = responseCode.code === 201;",
@@ -428,28 +377,31 @@
               "",
               "",
               "pm.environment.unset(\"expiration\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "e3311fe8-b4f1-407e-a50e-5ec38e8fbcc0",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"expiration\", \"2019-12-01T08:35:50Z\");",
               "pm.environment.set(\"description\", \"some description 2\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -492,7 +444,6 @@
           "listen": "test",
           "script": {
             "id": "26cf9195-ed85-47e2-9cf0-5358ec4bfab9",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;",
@@ -504,18 +455,20 @@
               "var jsonObject = JSON.parse(responseBody);",
               "",
               "tests[\"Revoked is true\"] = jsonObject.revoked === true;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
           }
-        ],
+        },
+        "method": "POST",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": ""
@@ -532,32 +485,34 @@
           "listen": "test",
           "script": {
             "id": "55f24ad3-dde1-4bc3-9282-88b0a91ed3a1",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 401\"] = responseCode.code === 401;",
               ""
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "709d4eb1-b23b-42ac-8132-153af2dc22a7",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"description\", \"some description\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "999999999"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer 9999999"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -595,31 +550,33 @@
           "listen": "test",
           "script": {
             "id": "37b12a50-1b5f-4c5d-b085-f72e969c9c98",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 400\"] = responseCode.code === 400;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "c89f916b-4bd1-4def-a504-75b7aa81cc80",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"description\", \"some description\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -662,7 +619,6 @@
           "listen": "test",
           "script": {
             "id": "abe2ef5f-180b-4376-a030-ef27172a15f8",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 201\"] = responseCode.code === 201;",
@@ -680,28 +636,31 @@
               "",
               "",
               "pm.environment.unset(\"expiration\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "df5fb1bb-a79b-4a21-880e-c0ac7bbeef16",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"expiration\", \"2015-12-01T08:35:50Z\");",
               "pm.environment.set(\"description\", \"some description 2\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -744,31 +703,33 @@
           "listen": "test",
           "script": {
             "id": "97d4a0d1-28c6-4a75-bb65-dca8a377901a",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 406\"] = responseCode.code === 406;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "08d10ca2-3a65-4fff-85cc-b66f9c7ae8bc",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"description\", \"some description\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json+dicom"
@@ -806,7 +767,6 @@
           "listen": "test",
           "script": {
             "id": "a4d54ab9-e33c-48f1-abf4-4f2360f420a6",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 201\"] = responseCode.code === 201;",
@@ -822,27 +782,30 @@
               "",
               "",
               "pm.environment.set(\"secret_capability_token\", jsonObject.secret);"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "bec3dcb0-f9a0-4f28-8b53-9cf1de3874c5",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"description\", \"\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -880,7 +843,6 @@
           "listen": "test",
           "script": {
             "id": "1d0e0b72-85c8-4d79-809b-d20126f73f9c",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 201\"] = responseCode.code === 201;",
@@ -896,27 +858,30 @@
               "",
               "",
               "pm.environment.set(\"secret_capability_token\", jsonObject.secret);"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "9a26a64b-3c3e-492a-83bc-eabde92455f0",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"description\", \"\u00e8\u00a8\u00e9\u00e0$-.,_:;\u00a3\u00e4\u00f6!\u00fc`^'^'0{}[]//\\\\<<>>  \u7e41\u4f53\u5b57 / \u7e41\u9ad4\u5b57, f\u00e1nt\u01d0z\u00ec, \");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -954,22 +919,23 @@
           "listen": "test",
           "script": {
             "id": "1e0fa343-9a79-4987-b884-b712b6bd0c32",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 401\"] = responseCode.code === 401;"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer 9999999"
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "999999"
           }
-        ],
+        },
+        "method": "GET",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": ""
@@ -986,7 +952,6 @@
           "listen": "test",
           "script": {
             "id": "b5e6bb80-fec4-42e7-9170-228cebb6642e",
-            "type": "text/javascript",
             "exec": [
               "// ensure healthy response code",
               "tests[\"Status code is 201\"] = responseCode.code === 201;",
@@ -1002,27 +967,30 @@
               "",
               "",
               "pm.environment.set(\"secret_capability_token\", jsonObject.secret);"
-            ]
+            ],
+            "type": "text/javascript"
           }
         },
         {
           "listen": "prerequest",
           "script": {
             "id": "c99d50c0-13a7-4b5a-a1f7-2389cbc16232",
-            "type": "text/javascript",
             "exec": [
               "pm.environment.set(\"description\", \"some description\");"
-            ]
+            ],
+            "type": "text/javascript"
           }
         }
       ],
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{user1_token}}"
+          }
+        },
         "method": "POST",
         "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token_user1}}"
-          },
           {
             "key": "Accept",
             "value": "application/json"
@@ -1053,76 +1021,6 @@
       "response": []
     },
     {
-      "_postman_id": "006aa682-f1bc-43ba-ae51-d9a00e3bcfbe",
-      "name": "Request capability tokens-OK",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "7effe4f5-4f58-4c23-b974-3712291280d5",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 200\"] = responseCode.code === 200;",
-              "",
-              "tests[\"[INFO] Response: \" + responseBody] = true;",
-              "",
-              "var jsonObject = JSON.parse(responseBody);",
-              "",
-              "tests[\"User is correct\"] = jsonObject.user === pm.globals.get(\"user1_id\");",
-              "tests[\"token_type is \\\"Bearer\\\"\"] = jsonObject.token_type === \"Bearer\";",
-              "",
-              "pm.environment.set(\"capability_access_token_user1\", jsonObject.access_token);",
-              "",
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "89f0f91f-0f60-4b44-a06f-f16fdaacb3f4",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript"
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:x-kheops:params:oauth:grant-type:capability",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "{{secret_capability_token}}",
-              "type": "text"
-            },
-            {
-              "key": "return_user",
-              "value": "true",
-              "description": "",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
       "_postman_id": "0e1930bd-2918-4bd7-a194-3060cc1b51dc",
       "name": "Request capability tokens with scope-OK",
       "event": [
@@ -1131,7 +1029,6 @@
           "script": {
             "id": "54963654-bd26-4abe-ab25-b608f724ebff",
             "exec": [
-              "// ensure healthy response code",
               "tests[\"Status code is 200\"] = responseCode.code === 200;",
               "",
               "var jsonObject = JSON.parse(responseBody);",
@@ -1142,9 +1039,7 @@
               "",
               "tests[\"token_type is \\\"Bearer\\\"\"] = jsonObject.token_type === \"Bearer\";",
               "",
-              "pm.environment.set(\"capability_access_token_user1\", jsonObject.access_token);",
-              "",
-              ""
+              "pm.environment.set(\"capability_access_token_user1\", jsonObject.access_token);"
             ],
             "type": "text/javascript"
           }
@@ -1183,181 +1078,24 @@
             },
             {
               "key": "scope",
-              "value": "StudyInstanceUID={{study_UID}} SeriesInstanceUID={{series_UID}}",
+              "value": "pep",
               "type": "text"
             },
             {
               "key": "return_user",
               "value": "true",
               "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
-      "_postman_id": "82e48a56-2812-4843-b299-593a7e76f147",
-      "name": "Request capability tokens-Bad scope",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "f14ac6cf-5e38-4c8f-9426-f3a68a23f3ff",
-            "type": "text/javascript",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 400\"] = responseCode.code === 400;",
-              ""
-            ]
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
+            },
             {
-              "key": "grant_type",
-              "value": "urn:x-kheops:params:oauth:grant-type:capability",
+              "key": "study_instance_uid",
+              "value": "{{study_UID}}",
+              "description": "",
               "type": "text"
             },
             {
-              "key": "assertion",
-              "value": "{{secret_capability_token}}",
-              "type": "text"
-            },
-            {
-              "key": "scope",
-              "value": "StudyInstanceUID={{study_UID}}123 SeriesInstanceUID={{series_UID}}456",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
-      "_postman_id": "cd844cdc-c029-41df-b479-dcf68da4fec8",
-      "name": "Request capability tokens-Unknown capability token",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "44aef2e6-7196-4070-9926-8e159fcba1b9",
-            "type": "text/javascript",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 401\"] = responseCode.code === 401;"
-            ]
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:x-kheops:params:oauth:grant-type:capability",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "99999999",
-              "type": "text"
-            }
-          ]
-        },
-        "url": "{{URL}}/token"
-      },
-      "response": []
-    },
-    {
-      "_postman_id": "a0460c72-2b60-400e-8292-19e7b0c51c57",
-      "name": "Request capability tokens-Unknown grant type",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "id": "c0c20e4a-03c5-44f6-ab26-a3f133d51b76",
-            "type": "text/javascript",
-            "exec": [
-              "// ensure healthy response code",
-              "tests[\"Status code is 400\"] = responseCode.code === 400;",
-              "",
-              "var jsonObject = JSON.parse(responseBody);",
-              "",
-              "tests[\"Unknown grant typen\"] = jsonObject.error_description === \"Unknown grant type: urn:x-kheops:params:oauth:grant-type:capabilityyyyy\";"
-            ]
-          }
-        },
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "794cf6b5-3c58-4f4f-b14b-e1a551b617dc",
-            "type": "text/javascript",
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/x-www-form-urlencoded"
-          }
-        ],
-        "body": {
-          "mode": "urlencoded",
-          "urlencoded": [
-            {
-              "key": "grant_type",
-              "value": "urn:x-kheops:params:oauth:grant-type:capabilityyyyy",
-              "type": "text"
-            },
-            {
-              "key": "assertion",
-              "value": "{{secret_capability_token}}",
+              "key": "series_instance_uid",
+              "value": "{{series_UID}}",
+              "description": "",
               "type": "text"
             }
           ]
