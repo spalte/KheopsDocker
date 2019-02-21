@@ -93,11 +93,9 @@ services:
 
   kheops-viewer:
     container_name: kheopsviewer
-    image: osirixfoundation/kheops-ui:${KHEOPS_UI_IMAGE_TAG}
+    image: osirixfoundation/kheops-ui-test:${KHEOPS_UI_IMAGE_TAG}
     ports:
       - "3000:3000"
-    environment:
-      - SERVER_NAME=kheopsviewer
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
