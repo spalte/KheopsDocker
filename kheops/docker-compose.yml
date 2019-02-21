@@ -85,7 +85,7 @@ services:
 
   kheops-viewer:
     container_name: kheopsviewer
-    image: osirixfoundation/kheops-ui-test:${KHEOPS_UI_IMAGE_TAG}
+    image: osirixfoundation/kheops-ui:no-tls-master
     ports:
       - "3000:3000"
     volumes:
