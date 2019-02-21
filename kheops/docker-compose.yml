@@ -4,7 +4,7 @@ services:
 
   ldap:
     container_name: pacsldap
-    image: dcm4che/slapd-dcm4chee:2.4.44-15.0
+    image: dcm4che/slapd-dcm4chee:${PACS_LDAP_IMAGE_TAG}
     env_file: docker-compose.env
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -19,11 +19,14 @@ services:
     volumes:
       - kheops-db-data:/var/lib/postgresql/data
     env_file: docker-compose.env
+    secrets:
+      - kheops_authdb_pass
+      - kheops_pacsdb_pass
     restart: on-failure
 
   arc:
     container_name: pacsarc
-    image: dcm4che/dcm4chee-arc-psql:5.13.0
+    image: osirixfoundation/kheops-dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
     ports:
       - "8080:8080"
       - "8443:8443"
@@ -33,9 +36,11 @@ services:
       - "2575:2575"
     env_file: docker-compose.env
     environment:
-      WILDFLY_CHOWN: /opt/wildfly/standalone /storage
+      WILDFLY_CHOWN: /storage /opt/wildfly/standalone
       WILDFLY_WAIT_FOR: ldap:389 db:5432
       JAVA_OPTS: -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n
+    secrets:
+      - kheops_pacsdb_pass
     depends_on:
       - ldap
       - db
@@ -57,12 +62,14 @@ services:
     depends_on:
       - db
       - arc
-    extra_hosts:
-      - "keycloak.kheops.online:10.5.5.29"
     secrets:
       - kheops_superuser_hmasecret
       - kheops_auth_hmasecret
-      - kheops_postgresql_password
+      - kheops_authdb_pass
+      - kheops_keycloak_clientsecret
+      - kheops_keycloak_password
+    extra_hosts:
+      - "keycloak.kheops.online:10.5.5.29"
 
   kheops-zipper:
     container_name: kheopszipper
@@ -74,6 +81,21 @@ services:
     env_file: docker-compose.env
     depends_on:
       - arc
+
+
+  kheops-viewer:
+    container_name: kheopsviewer
+    image: osirixfoundation/kheops-ui-test:${KHEOPS_UI_IMAGE_TAG}
+    ports:
+      - "3000:3000"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${TIME_ZONE}:/etc/timezone:ro
+    restart: on-failure
+    depends_on:
+      - kheops-authorization
+      - arc
+
 
   kheops-dicomweb-proxy:
     container_name: kheopsdicomwebproxy
@@ -91,19 +113,6 @@ services:
     secrets:
       - kheops_auth_hmasecret_post
 
-  kheops-viewer:
-    container_name: kheopsviewer
-    image: osirixfoundation/kheops-ui-test:${KHEOPS_UI_IMAGE_TAG}
-    ports:
-      - "3000:3000"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${TIME_ZONE}:/etc/timezone:ro
-    restart: on-failure
-    depends_on:
-      - kheops-authorization
-      - arc
-
   kheops-reverse-proxy:
     image: osirixfoundation/kheops-reverse-proxy:${KHEOPS_REVERSE_PROXY_IMAGE_TAG}
     container_name: kheopsreverseproxy
@@ -119,13 +128,13 @@ services:
       - "443:443"
       - "8042:8042"
       - "8048:8048"
-    extra_hosts:
-      - "${ROOT_URL}:127.0.0.1"
     depends_on:
       - kheops-authorization
       - kheops-dicomweb-proxy
       - arc
       - pacs-authorization-proxy
+    extra_hosts:
+      - "${ROOT_URL}:127.0.0.1"
 
   pacs-authorization-proxy:
     container_name: pacsauthorizationproxy
@@ -143,24 +152,30 @@ services:
       - kheops_auth_hmasecret_post
 
 secrets:
+  kheops_authdb_pass:
+    file: ${SECRETS_PATH}/kheops_authdb_pass
+  kheops_pacsdb_pass:
+    file: ${SECRETS_PATH}/kheops_pacsdb_pass
   kheops_superuser_hmasecret:
     file: ${SECRETS_PATH}/kheops_superuser_hmasecret
   kheops_auth_hmasecret:
     file: ${SECRETS_PATH}/kheops_auth_hmasecret
   kheops_auth_hmasecret_post:
     file: ${SECRETS_PATH}/kheops_auth_hmasecret_post
-  kheops_postgresql_password:
-    file: ${SECRETS_PATH}/kheops_postgresql_password
   privkey1.pem:
     file: ${NGINX_KEY}/privkey1.pem
   fullchain1.pem:
     file: ${NGINX_KEY}/fullchain1.pem
   OAuth2_secret:
     file: ${SECRETS_PATH}/OAuth2_secret
+  kheops_keycloak_clientsecret:
+    file: ${SECRETS_PATH}/kheops_keycloak_clientsecret
+  kheops_keycloak_password:
+    file: ${SECRETS_PATH}/kheops_keycloak_password
 
 volumes:
   dcm4chee-ldap-ldap:
   dcm4chee-ldap-slapdd:
   dcm4chee-db-data:
   dcm4chee-arc-wildfly:
-  kheops-db-data:
+  kheops-db-data: 
