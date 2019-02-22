@@ -83,8 +83,8 @@ services:
       - arc
 
 
-  kheops-viewer:
-    container_name: kheopsviewer
+  kheops-ui:
+    container_name: kheopsui
     image: osirixfoundation/kheops-ui-test:latest
     ports:
       - "3000:3000"
