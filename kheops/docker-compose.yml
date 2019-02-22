@@ -85,12 +85,13 @@ services:
 
   kheops-viewer:
     container_name: kheopsviewer
-    image: osirixfoundation/kheops-ui:no-tls-master
+    image: osirixfoundation/kheops-ui-test:latest
     ports:
       - "3000:3000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${TIME_ZONE}:/etc/timezone:ro
+    env_file: docker-compose.env
     restart: on-failure
     depends_on:
       - kheops-authorization
