@@ -85,7 +85,7 @@ services:
 
   kheops-ui:
     container_name: kheopsui
-    image: osirixfoundation/kheops-ui-test:latest
+    image: osirixfoundation/kheops-ui:${KHEOPS_UI_IMAGE_TAG}
     ports:
       - "3000:3000"
     volumes:
