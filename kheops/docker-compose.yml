@@ -140,6 +140,7 @@ services:
     container_name: welcomebot
     env_file: docker-compose.env
     image: osirixfoundation/kheops-welcome-bot:${KHEOPS_WELCOME_BOT_IMAGE_TAG}
+    restart: on-failure
     secrets:
       - welcomebot_token
 
