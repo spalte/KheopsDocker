@@ -29,13 +29,13 @@ services:
   arc:
     container_name: pacsarc
     image: osirixfoundation/kheops-dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
-    ports:
-      - "8080:8080"
-      - "8443:8443"
-      - "9990:9990"
-      - "8787:8787"
-      - "11112:11112"
-      - "2575:2575"
+#    ports:
+#      - "8080:8080"
+#      - "8443:8443"
+#      - "9990:9990"
+#      - "8787:8787"
+#      - "11112:11112"
+#      - "2575:2575"
     env_file: docker-compose.env
     environment:
       WILDFLY_CHOWN: /storage /opt/wildfly/standalone
