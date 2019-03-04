@@ -50,7 +50,7 @@ services:
 #      - /etc/localtime:/etc/localtime:ro
 #      - ${TIME_ZONE}:/etc/timezone:ro
       - dcm4chee-arc-wildfly:/opt/wildfly/standalone
-      - dcm4chee-arc-wildfly:/storage
+      - Dcm4chee-arc-storage:/storage
     restart: on-failure
 
   kheops-authorization:
@@ -186,7 +186,6 @@ secrets:
 volumes:
   dcm4chee-ldap-ldap:
   dcm4chee-ldap-slapdd:
-  dcm4chee-db-data:
   dcm4chee-arc-wildfly:
   Dcm4chee-arc-storage:
   kheops-db-data:
