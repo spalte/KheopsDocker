@@ -5477,6 +5477,102 @@
             "url": "{{URL}}/albums/{{album_user_id_1}}/users"
           },
           "response": []
+        },
+        {
+          "_postman_id": "6565e7a4-e7ac-41b7-8736-7346a065b346",
+          "name": "user 1 quit album",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "42c61bda-274a-498c-bc85-243b637c6fef",
+                "exec": [
+                  "tests[\"Status code is 204\"] = responseCode.code === 204;"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34930514-9077-47db-bf12-4dbf2c425f62",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {},
+            "url": "{{URL}}/albums/{{album_user_id_1}}/users/{{user1_mail}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "7ba73aaa-8b6e-42c3-bf31-023fdc19db50",
+          "name": "user 2 quit album",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "42c61bda-274a-498c-bc85-243b637c6fef",
+                "exec": [
+                  "tests[\"Status code is 204\"] = responseCode.code === 204;"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34930514-9077-47db-bf12-4dbf2c425f62",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user2_token}}"
+              }
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {},
+            "url": "{{URL}}/albums/{{album_user_id_1}}/users/{{user2_mail}}"
+          },
+          "response": []
         }
       ]
     },
@@ -9695,6 +9791,774 @@
               "raw": ""
             },
             "url": "{{URL}}/studies/{{study_UID}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "80817e8d-5f8a-479f-9d72-3eefae521c05",
+      "name": "modality filter",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "89da40e1-5cc4-431a-b402-98ce51897760",
+          "name": "Create an album(1)-OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c09cfdaa-aa57-499c-a23c-8e26fa376e1e",
+                "exec": [
+                  "tests[\"Status code is 201\"] = responseCode.code === 201;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "pm.environment.set(\"album_id_1\", jsonObject.album_id);",
+                  "",
+                  "tests[\"album_id\"] = jsonObject.album_id == pm.environment.get(\"album_id_1\");",
+                  "",
+                  "tests[\"name\"] = jsonObject.name == \"name 1\"",
+                  "",
+                  "tests[\"description\"] = jsonObject.description == \"description 1\"",
+                  "",
+                  "tests[\"is_favorite\"] = jsonObject.is_favorite == false",
+                  "",
+                  "tests[\"number_of_users\"] = jsonObject.number_of_users == 1",
+                  "",
+                  "tests[\"number_of_comments\"] = jsonObject.number_of_comments == 0",
+                  "",
+                  "tests[\"number_of_studies\"] = jsonObject.number_of_studies == 0",
+                  "",
+                  "tests[\"add_user\"] = jsonObject.add_user == false",
+                  "",
+                  "tests[\"download_series\"] = jsonObject.download_series == true",
+                  "",
+                  "tests[\"send_series\"] = jsonObject.send_series == false",
+                  "",
+                  "tests[\"delete_series\"] = jsonObject.delete_series == false",
+                  "",
+                  "tests[\"add_series\"] = jsonObject.add_series == true",
+                  "",
+                  "tests[\"write_comments\"] = jsonObject.write_comments == true",
+                  "",
+                  "tests[\"notification_new_series\"] = jsonObject.notification_new_series == true",
+                  "",
+                  "tests[\"notification_new_comment\"] = jsonObject.notification_new_comment == true",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9779808a-2ba5-42f3-a7a1-2d91cb976010",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "sendSeries",
+                  "value": "false",
+                  "type": "text"
+                },
+                {
+                  "key": "name",
+                  "value": "name 1",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "description 1",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "{{URL}}/albums"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6cd35d37-aa96-4d91-9b7f-bc63ad075146",
+          "name": "Create an album(1)-OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c09cfdaa-aa57-499c-a23c-8e26fa376e1e",
+                "exec": [
+                  "tests[\"Status code is 201\"] = responseCode.code === 201;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "pm.environment.set(\"album_id_2\", jsonObject.album_id);",
+                  "",
+                  "tests[\"album_id\"] = jsonObject.album_id == pm.environment.get(\"album_id_2\");",
+                  "",
+                  "tests[\"name\"] = jsonObject.name == \"name 2\"",
+                  "",
+                  "tests[\"description\"] = jsonObject.description == \"description 1\"",
+                  "",
+                  "tests[\"is_favorite\"] = jsonObject.is_favorite == false",
+                  "",
+                  "tests[\"number_of_users\"] = jsonObject.number_of_users == 1",
+                  "",
+                  "tests[\"number_of_comments\"] = jsonObject.number_of_comments == 0",
+                  "",
+                  "tests[\"number_of_studies\"] = jsonObject.number_of_studies == 0",
+                  "",
+                  "tests[\"add_user\"] = jsonObject.add_user == false",
+                  "",
+                  "tests[\"download_series\"] = jsonObject.download_series == true",
+                  "",
+                  "tests[\"send_series\"] = jsonObject.send_series == false",
+                  "",
+                  "tests[\"delete_series\"] = jsonObject.delete_series == false",
+                  "",
+                  "tests[\"add_series\"] = jsonObject.add_series == true",
+                  "",
+                  "tests[\"write_comments\"] = jsonObject.write_comments == true",
+                  "",
+                  "tests[\"notification_new_series\"] = jsonObject.notification_new_series == true",
+                  "",
+                  "tests[\"notification_new_comment\"] = jsonObject.notification_new_comment == true",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9779808a-2ba5-42f3-a7a1-2d91cb976010",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "",
+                  "key": "sendSeries",
+                  "type": "text",
+                  "value": "false"
+                },
+                {
+                  "description": "",
+                  "key": "name",
+                  "type": "text",
+                  "value": "name 2"
+                },
+                {
+                  "description": "",
+                  "key": "description",
+                  "type": "text",
+                  "value": "description 1"
+                }
+              ]
+            },
+            "url": "{{URL}}/albums"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5809971d-1e61-4552-9635-e091d5325bf3",
+          "name": "Create an album(1)-OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c09cfdaa-aa57-499c-a23c-8e26fa376e1e",
+                "exec": [
+                  "tests[\"Status code is 201\"] = responseCode.code === 201;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "pm.environment.set(\"album_id_3\", jsonObject.album_id);",
+                  "",
+                  "tests[\"album_id\"] = jsonObject.album_id == pm.environment.get(\"album_id_3\");",
+                  "",
+                  "tests[\"name\"] = jsonObject.name == \"name 3\"",
+                  "",
+                  "tests[\"description\"] = jsonObject.description == \"description 1\"",
+                  "",
+                  "tests[\"is_favorite\"] = jsonObject.is_favorite == false",
+                  "",
+                  "tests[\"number_of_users\"] = jsonObject.number_of_users == 1",
+                  "",
+                  "tests[\"number_of_comments\"] = jsonObject.number_of_comments == 0",
+                  "",
+                  "tests[\"number_of_studies\"] = jsonObject.number_of_studies == 0",
+                  "",
+                  "tests[\"add_user\"] = jsonObject.add_user == false",
+                  "",
+                  "tests[\"download_series\"] = jsonObject.download_series == true",
+                  "",
+                  "tests[\"send_series\"] = jsonObject.send_series == false",
+                  "",
+                  "tests[\"delete_series\"] = jsonObject.delete_series == false",
+                  "",
+                  "tests[\"add_series\"] = jsonObject.add_series == true",
+                  "",
+                  "tests[\"write_comments\"] = jsonObject.write_comments == true",
+                  "",
+                  "tests[\"notification_new_series\"] = jsonObject.notification_new_series == true",
+                  "",
+                  "tests[\"notification_new_comment\"] = jsonObject.notification_new_comment == true",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "9779808a-2ba5-42f3-a7a1-2d91cb976010",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "",
+                  "key": "sendSeries",
+                  "type": "text",
+                  "value": "false"
+                },
+                {
+                  "description": "",
+                  "key": "name",
+                  "type": "text",
+                  "value": "name 3"
+                },
+                {
+                  "description": "",
+                  "key": "description",
+                  "type": "text",
+                  "value": "description 1"
+                }
+              ]
+            },
+            "url": "{{URL}}/albums"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "58015ee1-b1ec-4a40-a04b-da0f4b49698f",
+          "name": "STOW RS inside album 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "10934521-c04a-4f45-9aa9-60e322018d4c",
+                "exec": [
+                  "// ensure healthy response code",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": null
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/studies?album={{album_id_1}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies"
+              ],
+              "query": [
+                {
+                  "key": "album",
+                  "value": "{{album_id_1}}",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "01444032-5e8f-4a5d-856f-5aaa67298c12",
+          "name": "STOW RS inside album 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "10934521-c04a-4f45-9aa9-60e322018d4c",
+                "exec": [
+                  "// ensure healthy response code",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": null
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/studies?album={{album_id_1}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies"
+              ],
+              "query": [
+                {
+                  "key": "album",
+                  "value": "{{album_id_1}}",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9a6f0bc4-89eb-44a8-a9b7-8c7d04aecc85",
+          "name": "STOW RS inside album 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "10934521-c04a-4f45-9aa9-60e322018d4c",
+                "exec": [
+                  "// ensure healthy response code",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": null
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/studies?album={{album_id_2}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies"
+              ],
+              "query": [
+                {
+                  "key": "album",
+                  "value": "{{album_id_2}}",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3446dc3c-9dd8-4af2-828c-950ffba513fb",
+          "name": "STOW RS inside album 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "10934521-c04a-4f45-9aa9-60e322018d4c",
+                "exec": [
+                  "// ensure healthy response code",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {
+                "src": null
+              }
+            },
+            "url": {
+              "raw": "{{URL}}/studies?album={{album_id_2}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies"
+              ],
+              "query": [
+                {
+                  "key": "album",
+                  "value": "{{album_id_2}}",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "60500465-001b-4201-8351-9745cda3e7aa",
+          "name": "get album list-modality filter-CT",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "62d44f57-a4bb-4ea6-a6cc-770470ff263a",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
+                  "tests[\"Not empty response []\"] = responseBody != \"[]\"",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"Return 3 album\"] = jsonObject.length === 3;",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34930514-9077-47db-bf12-4dbf2c425f62",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/albums?modality=ct",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "albums"
+              ],
+              "query": [
+                {
+                  "key": "modality",
+                  "value": "ct",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "576e0d42-6516-49d3-ae4c-e7a893fdd515",
+          "name": "get album list-modality filter-MR",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "62d44f57-a4bb-4ea6-a6cc-770470ff263a",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
+                  "tests[\"Not empty response []\"] = responseBody != \"[]\"",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"Return 1 album\"] = jsonObject.length === 1;"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34930514-9077-47db-bf12-4dbf2c425f62",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/albums?modality=MR",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "albums"
+              ],
+              "query": [
+                {
+                  "key": "modality",
+                  "value": "MR",
+                  "equals": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "23c5d02d-61a7-4168-9cda-89443666fa0a",
+          "name": "get album list-modality filter-SC",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "62d44f57-a4bb-4ea6-a6cc-770470ff263a",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;",
+                  "",
+                  "tests[\"Not empty response []\"] = responseBody != \"[]\"",
+                  "",
+                  "var jsonObject = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"Return 1 album\"] = jsonObject.length === 1;"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "34930514-9077-47db-bf12-4dbf2c425f62",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{URL}}/albums?modality=sc",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "albums"
+              ],
+              "query": [
+                {
+                  "key": "modality",
+                  "value": "sc",
+                  "equals": true
+                }
+              ]
+            }
           },
           "response": []
         }

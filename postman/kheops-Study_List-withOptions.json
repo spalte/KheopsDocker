@@ -269,7 +269,9 @@
                   "    tests[\"X-Total-Count = \" + totalCount + \" instead of 5\"] = false;",
                   "}",
                   "",
-                  "tests[\"X-Total-Count exposed\"] = postman.getResponseHeader(\"Access-Control-Expose-Headers\").indexOf(\"X-Total-Count\") !== -1;"
+                  "tests[\"X-Total-Count exposed\"] = postman.getResponseHeader(\"Access-Control-Expose-Headers\").indexOf(\"X-Total-Count\") !== -1;",
+                  "",
+                  "tests[\"[INFO] Response: \" + responseBody] = true;"
                 ],
                 "type": "text/javascript"
               }
@@ -2402,7 +2404,6 @@
                   "tests[\"Return 2 studies\"] = jsonObject.length === 2;",
                   "tests[\"1st PatientName ENTERIX\"] = jsonObject[0]['00100010']['Value'][0]['Alphabetic'] === \"ENTERIX\";",
                   "tests[\"2th PatientName MAGIX\"] = jsonObject[1]['00100010']['Value'][0]['Alphabetic'] === \"MAGIX\";",
-                  "",
                   "",
                   "tests[\"X-Total-Count = 2\"] = postman.getResponseHeader(\"X-Total-Count\") == 2;"
                 ],
