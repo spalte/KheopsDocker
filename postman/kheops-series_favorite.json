@@ -320,7 +320,25 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{URL}}/studies/{{study_UID}}/users/{{user2_mail}}"
+            "url": {
+              "raw": "{{URL}}/studies/{{study_UID}}/users/{{user2_mail}}?inbox=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies",
+                "{{study_UID}}",
+                "users",
+                "{{user2_mail}}"
+              ],
+              "query": [
+                {
+                  "key": "inbox",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -333,7 +351,8 @@
               "script": {
                 "id": "902ac2e1-2bd5-4dc2-88d5-6a4a50fab1ef",
                 "exec": [
-                  "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;"
+                  "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;",
+                  ""
                 ],
                 "type": "text/javascript"
               }
@@ -352,7 +371,25 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{URL}}/studies/{{IncisixStudyUID}}/users/{{user2_mail}}"
+            "url": {
+              "raw": "{{URL}}/studies/{{IncisixStudyUID}}/users/{{user2_mail}}?inbox=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies",
+                "{{IncisixStudyUID}}",
+                "users",
+                "{{user2_mail}}"
+              ],
+              "query": [
+                {
+                  "key": "inbox",
+                  "value": "true",
+                  "equals": true
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -384,7 +421,25 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{URL}}/studies/{{FelixStudyUID}}/users/{{user2_mail}}"
+            "url": {
+              "raw": "{{URL}}/studies/{{FelixStudyUID}}/users/{{user2_mail}}?inbox=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies",
+                "{{FelixStudyUID}}",
+                "users",
+                "{{user2_mail}}"
+              ],
+              "query": [
+                {
+                  "key": "inbox",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -3543,7 +3598,25 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{URL}}/studies/{{study_UID}}/albums/{{album_id_1}}"
+            "url": {
+              "raw": "{{URL}}/studies/{{study_UID}}/albums/{{album_id_1}}?inbox=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies",
+                "{{study_UID}}",
+                "albums",
+                "{{album_id_1}}"
+              ],
+              "query": [
+                {
+                  "key": "inbox",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -3575,7 +3648,25 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{URL}}/studies/{{IncisixStudyUID}}/albums/{{album_id_1}}"
+            "url": {
+              "raw": "{{URL}}/studies/{{IncisixStudyUID}}/albums/{{album_id_1}}?inbox=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies",
+                "{{IncisixStudyUID}}",
+                "albums",
+                "{{album_id_1}}"
+              ],
+              "query": [
+                {
+                  "key": "inbox",
+                  "value": "true",
+                  "type": "text"
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -3588,7 +3679,8 @@
               "script": {
                 "id": "902ac2e1-2bd5-4dc2-88d5-6a4a50fab1ef",
                 "exec": [
-                  "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;"
+                  "tests[\"Status code is 200 ou 201\"] = responseCode.code === 200 | responseCode.code === 201;",
+                  ""
                 ],
                 "type": "text/javascript"
               }
@@ -3607,7 +3699,25 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{URL}}/studies/{{FelixStudyUID}}/albums/{{album_id_1}}"
+            "url": {
+              "raw": "{{URL}}/studies/{{FelixStudyUID}}/albums/{{album_id_1}}?inbox=true",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "studies",
+                "{{FelixStudyUID}}",
+                "albums",
+                "{{album_id_1}}"
+              ],
+              "query": [
+                {
+                  "key": "inbox",
+                  "value": "true",
+                  "equals": true
+                }
+              ]
+            }
           },
           "response": []
         },
