@@ -71,6 +71,8 @@ services:
       - kheops_auth_hmasecret
       - kheops_authdb_pass
       - kheops_keycloak_clientsecret
+      - kheops_client_dicomwebproxysecret
+      - kheops_client_zippersecret
 
   kheops-zipper:
     container_name: kheopszipper
@@ -82,6 +84,8 @@ services:
     env_file: docker-compose.env
     depends_on:
       - arc
+    secrets:
+      - kheops_client_zippersecret
 
   kheops-ui:
     container_name: kheopsui
@@ -110,6 +114,7 @@ services:
       - arc
     secrets:
       - kheops_auth_hmasecret_post
+      - kheops_client_dicomwebproxysecret
 
   kheops-ohif-standalone:
     container_name: kheopsohifstandalone
@@ -172,6 +177,10 @@ secrets:
     file: ${NGINX_KEY}/fullchain1.pem
   kheops_keycloak_clientsecret:
     file: ${SECRETS_PATH}/kheops_keycloak_clientsecret
+  kheops_client_dicomwebproxysecret:
+    file: ${SECRETS_PATH}/kheops_client_dicomwebproxysecret
+  kheops_client_zippersecret:
+    file: ${SECRETS_PATH}/kheops_client_zippersecret
 
 volumes:
   dcm4chee-ldap-ldap:
