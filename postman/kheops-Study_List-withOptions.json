@@ -59,44 +59,6 @@
               }
             }
           ],
-          "_postman_id": "ad41d169-1ff0-414e-977f-c152d0523430",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": {
-                "token": "{{user1_token}}"
-              }
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
-              }
-            ],
-            "body": {
-              "mode": "file",
-              "file": {}
-            },
-            "url": "{{URL}}/studies"
-          },
-          "response": []
-        },
-        {
-          "name": "STOW RS inside inbox user 1",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "7524252c-94ee-4cd1-8780-15785472765a",
-                "exec": [
-                  "// ensure healthy response code",
-                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
           "_postman_id": "ac6038d2-ce13-4ec4-bd1e-4ce2a4d2492b",
           "request": {
             "auth": {
@@ -212,6 +174,49 @@
             }
           ],
           "_postman_id": "755c6927-7f44-4500-b2e4-8d4b5316ba2f",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "{{user1_token}}"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/related; type=\"application/dicom\"; boundary=myboundary"
+              }
+            ],
+            "body": {
+              "mode": "file",
+              "file": {}
+            },
+            "url": "{{URL}}/studies"
+          },
+          "response": []
+        },
+        {
+          "name": "STOW RS inside inbox user 1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7524252c-94ee-4cd1-8780-15785472765a",
+                "exec": [
+                  "// ensure healthy response code",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "c2a1c62b-bd77-40e8-807f-95ce50d9dcb0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "auth": {
               "type": "bearer",
