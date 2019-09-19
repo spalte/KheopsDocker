@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kheopsauthorization
+  labels:
+    app: kheopsauthorization
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: kheopsauthorization
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kheopsauthorization
+spec:
+  selector:
+    matchLabels:
+      app: kheopsauthorization
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kheopsauthorization
+    spec:
+      containers:
+      - name: kheopsauthorization
+        image: osirixfoundation/kheops-authorization:dev
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: kubeunige
+        volumeMounts:
+        - name: secrets
+          mountPath: "/run/secrets/kheops_superuser_hmasecret"
+          subPath: kheops_superuser_hmasecret
+        - name: secrets
+          mountPath: "/run/secrets/kheops_auth_hmasecret"
+          subPath: kheops_auth_hmasecret
+        - name: secrets
+          mountPath: "/run/secrets/kheops_authdb_pass"
+          subPath: kheops_authdb_pass
+        - name: secrets
+          mountPath: "/run/secrets/kheops_keycloak_clientsecret"
+          subPath: kheops_keycloak_clientsecret
+        - name: secrets
+          mountPath: "/run/secrets/kheops_client_dicomwebproxysecret"
+          subPath: kheops_client_dicomwebproxysecret
+        - name: secrets
+          mountPath: "/run/secrets/kheops_client_zippersecret"
+          subPath: kheops_client_zippersecret
+        - name: secrets
+          mountPath: "/run/secrets/kheops_metric_ressource_password"
+          subPath: kheops_metric_ressource_password
+      volumes:
+      - name: secrets
+        secret:
+          secretName: kheops.secrets
+          items:
+          - key: kheops_superuser_hmasecret
+            path: kheops_superuser_hmasecret
+          - key: kheops_auth_hmasecret
+            path: kheops_auth_hmasecret
+          - key: kheops_authdb_pass
+            path: kheops_authdb_pass
+          - key: kheops_keycloak_clientsecret
+            path: kheops_keycloak_clientsecret
+          - key: kheops_client_dicomwebproxysecret
+            path: kheops_client_dicomwebproxysecret
+          - key: kheops_client_zippersecret
+            path: kheops_client_zippersecret
+          - key: kheops_metric_ressource_password
+            path: kheops_metric_ressource_password

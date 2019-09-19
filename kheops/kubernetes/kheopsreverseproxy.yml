@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kheopsreverseproxy
+  labels:
+    app: kheopsreverseproxy
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8042
+    targetPort: 8042
+  selector:
+    app: kheopsreverseproxy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kheopsreverseproxy
+spec:
+  selector:
+    matchLabels:
+      app: kheopsreverseproxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kheopsreverseproxy
+    spec:
+      containers:
+      - name: kheopsreverseproxy
+        image: osirixfoundation/kheops-reverse-proxy:ci-test
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8042
+        envFrom:
+        - configMapRef:
+            name: kubeunige
+        volumeMounts:
+        - name: secrets
+          mountPath: "/run/secrets/privkey1.pem"
+          subPath: privkey1.pem
+        - name: secrets
+          mountPath: "/run/secrets/fullchain1.pem"
+          subPath: fullchain1.pem
+      volumes:
+      - name: secrets
+        secret:
+          secretName: kheops.secrets
+          items:
+          - key: privkey1.pem
+            path: privkey1.pem
+          - key: fullchain1.pem
+            path: fullchain1.pem
