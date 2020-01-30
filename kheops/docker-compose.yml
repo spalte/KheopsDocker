@@ -158,6 +158,8 @@ services:
       - kheops_auth_hmasecret_post
 
 secrets:
+  kheops_pacsdb_pass:
+    file: ${SECRETS_PATH}/kheops_pacsdb_pass
   kheops_authdb_pass:
     file: ${SECRETS_PATH}/kheops_authdb_pass
   kheops_superuser_hmasecret:
