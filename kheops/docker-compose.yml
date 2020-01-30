@@ -14,14 +14,23 @@ services:
     restart: on-failure
 
   db:
-    container_name: db
+    image: dcm4che/postgres-dcm4chee:12.1-21
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+    env_file: docker-compose.env
+    volumes:
+      - /var/local/dcm4chee-arc/db:/var/lib/postgresql/data
+
+  auth-db:
+    container_name: authdb
     image: osirixfoundation/kheops-database:${KHEOPS_DATABASE_IMAGE_TAG}
     volumes:
       - kheops-db-data:/var/lib/postgresql/data
     env_file: docker-compose.env
     secrets:
       - kheops_authdb_pass
-      - kheops_pacsdb_pass
     restart: on-failure
 
   arc:
@@ -151,8 +160,6 @@ services:
 secrets:
   kheops_authdb_pass:
     file: ${SECRETS_PATH}/kheops_authdb_pass
-  kheops_pacsdb_pass:
-    file: ${SECRETS_PATH}/kheops_pacsdb_pass
   kheops_superuser_hmasecret:
     file: ${SECRETS_PATH}/kheops_superuser_hmasecret
   kheops_auth_hmasecret:
