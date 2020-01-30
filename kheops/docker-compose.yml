@@ -14,7 +14,7 @@ services:
     restart: on-failure
 
   db:
-    image: dcm4che/postgres-dcm4chee:5.15.0
+    image: dcm4che/postgres-dcm4chee:11.1-15
     logging:
       driver: json-file
       options:
