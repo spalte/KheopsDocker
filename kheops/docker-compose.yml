@@ -14,14 +14,17 @@ services:
     restart: on-failure
 
   db:
-    image: dcm4che/postgres-dcm4chee:11.1-15
+    image: dcm4che/postgres-dcm4chee:${PACS_PSQL_IMAGE_TAG}
     logging:
       driver: json-file
       options:
         max-size: "10m"
     env_file: docker-compose.env
     volumes:
-      - /var/local/dcm4chee-arc/db:/var/lib/postgresql/data
+      - dcm4chee-db-data:/var/lib/postgresql/data
+    secrets:
+      - kheops_pacsdb_pass
+    restart: on-failure
 
   auth-db:
     container_name: authdb
