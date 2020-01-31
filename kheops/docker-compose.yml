@@ -41,7 +41,7 @@ services:
   #  restart: on-failure
   auth-db:
     container_name: authdb
-    image: postgres:10
+    image: postgres:12
     volumes:
       - kheops-db-data:/var/lib/postgresql/data
     environment:
