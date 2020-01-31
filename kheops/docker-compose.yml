@@ -38,7 +38,7 @@ services:
 
   arc:
     container_name: pacsarc
-    image: osirixfoundation/kheops-dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
+    image: dcm4che/dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
     ports:
       - "8080:8080"
       - "8443:8443"
