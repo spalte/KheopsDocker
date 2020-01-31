@@ -70,6 +70,7 @@ services:
     env_file: docker-compose.env
     depends_on:
       - db
+      - auth-db
       - arc
     secrets:
       - kheops_superuser_hmasecret
