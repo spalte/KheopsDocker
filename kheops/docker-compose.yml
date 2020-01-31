@@ -19,7 +19,10 @@ services:
       driver: json-file
       options:
         max-size: "10m"
-    env_file: docker-compose.env
+    environment:
+      - POSTGRES_DB=pacsdb
+      - POSTGRES_USER=pacs
+      - POSTGRES_PASSWORD_FILE=/run/secret/kheops_pacsdb_pass
     volumes:
       - dcm4chee-db-data:/var/lib/postgresql/data
     secrets:
