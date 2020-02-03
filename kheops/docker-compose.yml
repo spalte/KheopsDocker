@@ -43,7 +43,6 @@ services:
       - kheops_authdb_pass
     restart: on-failure
     
-
   arc:
     container_name: pacsarc
     image: dcm4che/dcm4chee-arc-psql:${KHEOPS_ARC_IMAGE_TAG}
