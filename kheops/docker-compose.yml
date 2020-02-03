@@ -32,7 +32,7 @@ services:
 
   auth-db:
     container_name: authdb
-    image: postgres:12
+    image: postgres:${KHEOPS_AUTHORIZATION_PSQL_DATABASE_IMAGE_TAG}
     volumes:
       - kheops-db-data:/var/lib/postgresql/data
     environment:
