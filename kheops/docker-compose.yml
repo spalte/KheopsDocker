@@ -30,15 +30,6 @@ services:
       - kheops_pacsdb_pass
     restart: on-failure
 
-  #auth-db:
-  #  container_name: authdb
-  #  image: osirixfoundation/kheops-database:${KHEOPS_DATABASE_IMAGE_TAG}
-  #  volumes:
-  #    - kheops-db-data:/var/lib/postgresql/data
-  #  env_file: docker-compose.env
-  #  secrets:
-  #    - kheops_authdb_pass
-  #  restart: on-failure
   auth-db:
     container_name: authdb
     image: postgres:12
